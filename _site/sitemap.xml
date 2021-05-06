@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://rimi.io/jekyll/update/2021/05/03/welcome-to-jekyll.html</loc>
+<lastmod>2021-05-03T12:51:49+09:00</lastmod>
+</url>
+<url>
+<loc>https://rimi.io/about/</loc>
+</url>
+<url>
+<loc>https://rimi.io/</loc>
+</url>
+<url>
+<loc>https://rimi.io/categories/jekyll/</loc>
+</url>
+<url>
+<loc>https://rimi.io/categories/update/</loc>
+</url>
+</urlset>
