@@ -22,18 +22,18 @@ rimi/.idea/
 #.vscode/
 
 # Flutter/Dart/Pub related
-**/doc/api/
-**/ios/Flutter/.last_build_id
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-.packages
-.pub-cache/
-.pub/
-/build/
+rimi/**/doc/api/
+rimi/**/ios/Flutter/.last_build_id
+rimi/.dart_tool/
+rimi/.flutter-plugins
+rimi/.flutter-plugins-dependencies
+rimi/.packages
+rimi/.pub-cache/
+rimi/.pub/
+rimi/build/
 
 # Web related
-lib/generated_plugin_registrant.dart
+rimi/lib/generated_plugin_registrant.dart
 
 # Symbolication related
 app.*.symbols
@@ -42,6 +42,7 @@ app.*.symbols
 app.*.map.json
 
 # Android Studio will place build artifacts here
-/android/app/debug
-/android/app/profile
-/android/app/release
+rimi/android/app/debug
+rimi/android/app/profile
+rimi/android/app/release
+
