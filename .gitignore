@@ -1,5 +1,48 @@
-_site
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+rimi/.idea/
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+rimi/**/doc/api/
+rimi/**/ios/Flutter/.last_build_id
+rimi/.dart_tool/
+rimi/.flutter-plugins
+rimi/.flutter-plugins-dependencies
+rimi/.packages
+rimi/.pub-cache/
+rimi/.pub/
+rimi/build/
+
+# Web related
+rimi/lib/generated_plugin_registrant.dart
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+rimi/android/app/debug
+rimi/android/app/profile
+rimi/android/app/release
+
