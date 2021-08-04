@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rimi/sections/resume/about.dart';
+import 'package:rimi/sections/resume/skill.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key, required this.title}) : super(key: key);
@@ -18,9 +19,12 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
+      body: Container(
+        width: double.infinity,
+        margin: EdgeInsets.all(20),
+        alignment: Alignment.center,
         child: Column(
-          children: [About()],
+          children: [About(), Skill()],
         ),
       ),
     );
