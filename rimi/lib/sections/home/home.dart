@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rimi/sections/resume/about.dart';
 
 class Home extends StatefulWidget {
   Home({Key? key, required this.title}) : super(key: key);
@@ -18,9 +19,9 @@ class _HomeState extends State<Home> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(children: [
-          Text('data')
-        ],),
+        child: Column(
+          children: [About()],
+        ),
       ),
     );
   }
