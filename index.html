@@ -516,7 +516,7 @@
           <li>자동응답 룰 엔진과 미답변 메시지 리마인드 배치를 추가하여, 병원 측 응대율 향상에 기여</li>
           <li>Kafka Consumer를 통해 타 도메인 이벤트(회원 탈퇴, 병원 정보 변경 등)를 수신하여 채팅방 데이터를 자동 동기화하는 구조를 구현, 도메인 간 정합성을 보장</li>
         </ul>
-        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;백엔드 설계 및 구현 전담 (1인), 프론트·앱 개발자 2명과 협업</span></div>
+        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;백엔드 설계 및 구현 주담당, 프론트·앱 개발자 2명과 협업</span></div>
         <div class="tech-stack"><span class="skill-tag">Kotlin 2.3.0</span><span class="skill-tag">Spring Boot 4.0.2</span><span class="skill-tag">MongoDB</span><span class="skill-tag">Redis</span><span class="skill-tag">Kafka</span></div>
       </div>
 
@@ -536,25 +536,14 @@
       </div>
 
       <div class="project-card">
-        <div class="project-title">MSA 전환</div>
-        <div class="project-subtitle">Monolith 서버를 도메인 단위 MSA로 분리하는 프로젝트에 참여</div>
-        <ul class="project-details">
-          <li>접수 도메인의 API를 식별·분류하여 독립 서비스로 분리하고, API Gateway에 라우팅을 연결</li>
-          <li>서비스 간 의존성 정리 및 공통 모듈 추출을 통해 전환 과정의 사이드이펙트를 최소화</li>
-        </ul>
-        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;접수 도메인 전환 담당</span></div>
-        <div class="tech-stack"><span class="skill-tag">NestJS 10.3</span><span class="skill-tag">MikroORM</span><span class="skill-tag">MongoDB</span><span class="skill-tag">Redis</span></div>
-      </div>
-
-      <div class="project-card">
         <div class="project-title">양방향 예약 시스템 구축</div>
         <div class="project-subtitle">병원 차트 프로그램 ↔ 똑닥 시스템 간 실시간 양방향 데이터 동기화 구현</div>
         <ul class="project-details">
           <li><span class="context-label">배경</span>기존에는 차트 프로그램이 HTTP Polling 방식으로 단방향 통신만 가능하여 예약 상태 불일치 문제가 발생</li>
-          <li>차트 프로그램 ↔ 에이전트 간 Socket 통신, 에이전트 ↔ 똑닥 간 MQTT 프로토콜을 적용하여 양방향 실시간 동기화 아키텍처를 설계</li>
+          <li>차트 프로그램 ↔ 똑닥 에이전트 간 Socket 통신, 똑닥 에이전트 ↔ 똑닥 백엔드 간 MQTT 프로토콜을 적용하여 양방향 실시간 동기화 아키텍처를 설계</li>
           <li>현장 예약 신청 → 똑닥 연동 처리 → 알림톡 자동 발송까지의 전체 플로우를 설계 및 구현</li>
         </ul>
-        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;아키텍처 설계 참여 및 백엔드 구현 담당</span></div>
+        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;백엔드 구현 담당</span></div>
         <div class="tech-stack"><span class="skill-tag">NestJS 10.3</span><span class="skill-tag">MikroORM</span><span class="skill-tag">MongoDB</span><span class="skill-tag">Redis</span><span class="skill-tag">MQTT</span></div>
       </div>
     </div>
