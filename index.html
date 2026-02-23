@@ -840,7 +840,9 @@
         <div class="project-subtitle">기존 예약 스케줄러의 구조적 한계를 해소하기 위한 시스템 재설계 및 개발을 주도</div>
         <ul class="project-details">
           <li><span class="context-label">배경</span>진료항목별 상이한 예약 시간 간격 설정 불가, 운영자 UX 복잡도 등 병원 측 불만이 지속적으로 접수되어 전면 개편 결정</li>
+          <li>진료항목별로 예약 시간 간격을 개별 설정할 수 있도록 구조를 변경하여, 병원이 시간 공백 없이 유연하게 예약을 운영할 수 있도록 개선</li>
           <li>예약 스케줄러의 데이터 모델(MongoDB Collection)을 재설계하고, 예약 카운팅 구조를 변경하여 동시성 이슈(중복 예약)를 해소</li>
+          <li>Redis 기반 분산 락(Redlock)을 도입하여 동시 예약 요청 시 발생하는 Race Condition을 근본적으로 예방</li>
           <li>기존 대비 디버깅 난이도를 낮추는 구조로 개선하여 장애 대응 시간 단축</li>
           <li class="highlight"><strong>성과</strong> &nbsp;월 2~3회 발생하던 중복 예약 이슈를 <span class="metric">사실상 0건</span>으로 해소</li>
         </ul>
@@ -1017,7 +1019,7 @@
         <div class="project-title">Message API 통합 전환</div>
         <div class="project-subtitle">Classic ASP로 분산 구현되어 있던 메시지 시스템(MMS, 카카오 알림톡, 안심번호, App Push)을 NestJS 단일 프로젝트로 통합 구축</div>
         <ul class="project-details">
-          <li>타사 OpenAPI 연동을 통한 안심번호 발급·관리 시스템과 발급 로그 체계를 구축</li>
+          <li>타사 OpenAPI 연동을 통한 안심번호 발급·관리 시스템과 카카오 알림톡 발송 체계, 발급 로그 체계를 구축</li>
           <li>Firebase Cloud Messaging을 Google 권장 방식(FCM HTTP v1)으로 마이그레이션</li>
         </ul>
         <div class="project-meta">
