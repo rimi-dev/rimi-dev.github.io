@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>김예림 (Rimi Kim) — Backend Engineer</title>
-  <meta name="description" content="7년차 백엔드 엔지니어 김예림의 경력기술서">
+  <meta name="description" id="meta-desc" content="백엔드 엔지니어 김예림의 경력기술서">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -45,6 +45,7 @@
       color: var(--text-primary);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     /* ── NAV ── */
@@ -683,14 +684,14 @@
   <section class="hero" id="about">
     <div class="hero-label">
       <span class="dot"></span>
-      Backend Engineer · 6년 8개월
+      Backend Engineer · <span id="total-career"></span>
     </div>
     <h1>
       김예림
       <span class="en">Rimi Kim</span>
     </h1>
     <p class="hero-subtitle">
-      다양한 언어와 프레임워크 경험을 바탕으로 안정적이고 확장 가능한 시스템을 설계하는 7년차 백엔드 엔지니어
+      다양한 언어와 프레임워크 경험을 바탕으로 안정적이고 확장 가능한 시스템을 설계하는 <span id="career-year"></span>차 백엔드 엔지니어
     </p>
     <div class="hero-contacts">
       <a href="mailto:yerimi@kakao.com">
@@ -798,7 +799,7 @@
   <section class="section" id="career">
     <div class="section-header">
       <h2>Career</h2>
-      <span class="career-badge">총 6년 8개월</span>
+      <span class="career-badge">총 <span id="total-career-2"></span></span>
       <div></div>
     </div>
 
@@ -810,7 +811,7 @@
         </div>
         <span class="company-role">Backend Engineer</span>
       </div>
-      <div class="company-meta">2025.01 ~ 현재 · 1년 2개월 &nbsp;·&nbsp; 헬스케어 서비스 "똑닥" 개발 스타트업</div>
+      <div class="company-meta">2025.01 ~ 현재 · <span id="vibros-period"></span> &nbsp;·&nbsp; 헬스케어 서비스 "똑닥" 개발 스타트업</div>
       <p class="company-desc">
         백엔드팀 접수/예약 스쿼드 소속으로, MAU 150만 규모 서비스의 예약 시스템 핵심 기능 개편과 신규 서비스 개발을 담당하고 있습니다.
       </p>
@@ -906,7 +907,7 @@
         </div>
         <span class="company-role">Backend Engineer</span>
       </div>
-      <div class="company-meta">2021.09 ~ 2024.02 · 2년 7개월 &nbsp;·&nbsp; 온라인 패션 커머스 유니콘 기업</div>
+      <div class="company-meta">2021.09 ~ 2024.03 · 2년 7개월 &nbsp;·&nbsp; 온라인 패션 커머스 유니콘 기업</div>
       <p class="company-desc">
         신사업 개발부서 소속으로 신규 서비스 런칭부터 성장 단계까지의 백엔드 개발을 담당했습니다.
       </p>
@@ -1246,6 +1247,52 @@
 </footer>
 
 <script>
+  // ── 경력 자동 계산 (LinkedIn 방식: 시작월·종료월 모두 포함) ──
+  const careers = [
+    { start: [2025, 1], end: null },        // 비브로스 (현재 재직중)
+    { start: [2021, 9], end: [2024, 3] },   // 무신사
+    { start: [2020, 9], end: [2021, 9] },   // 마켓디자이너스
+    { start: [2020, 3], end: [2020, 9] },   // 비투텍
+    { start: [2016, 9], end: [2017, 11] },  // 코리아써키트
+  ];
+
+  function calcMonths(startYear, startMonth, endYear, endMonth) {
+    return (endYear - startYear) * 12 + (endMonth - startMonth) + 1;
+  }
+
+  function formatPeriod(totalMonths) {
+    const years = Math.floor(totalMonths / 12);
+    const months = totalMonths % 12;
+    if (years === 0) return months + '개월';
+    if (months === 0) return years + '년';
+    return years + '년 ' + months + '개월';
+  }
+
+  const now = new Date();
+  const nowYear = now.getFullYear();
+  const nowMonth = now.getMonth() + 1;
+
+  let totalMonths = 0;
+  let vibrosMonths = 0;
+
+  careers.forEach((c, i) => {
+    const ey = c.end ? c.end[0] : nowYear;
+    const em = c.end ? c.end[1] : nowMonth;
+    const months = calcMonths(c.start[0], c.start[1], ey, em);
+    totalMonths += months;
+    if (i === 0) vibrosMonths = months;
+  });
+
+  const careerYear = Math.ceil(totalMonths / 12);
+  const totalStr = formatPeriod(totalMonths);
+  const vibrosStr = formatPeriod(vibrosMonths);
+
+  document.getElementById('total-career').textContent = totalStr;
+  document.getElementById('total-career-2').textContent = totalStr;
+  document.getElementById('career-year').textContent = careerYear;
+  document.getElementById('vibros-period').textContent = vibrosStr;
+  document.getElementById('meta-desc').setAttribute('content', careerYear + '년차 백엔드 엔지니어 김예림의 경력기술서');
+
   // Nav scroll shadow
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
