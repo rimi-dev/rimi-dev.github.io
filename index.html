@@ -7,673 +7,426 @@
   <meta name="description" id="meta-desc" content="백엔드 엔지니어 김예림의 경력기술서">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #fafaf9;
-      --surface: #ffffff;
-      --text-primary: #1c1917;
-      --text-secondary: #57534e;
-      --text-tertiary: #a8a29e;
-      --accent: #2563eb;
-      --accent-soft: #dbeafe;
-      --accent-dark: #1d4ed8;
-      --border: #e7e5e4;
-      --border-light: #f5f5f4;
-      --tag-bg: #f5f5f4;
-      --tag-text: #44403c;
-      --highlight: #fef3c7;
-      --success: #059669;
-      --card-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
-      --card-shadow-hover: 0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04);
+      --bg-deep: #0a0e17;
+      --bg: #0f1420;
+      --bg-card: #151b2b;
+      --bg-card-hover: #1a2236;
+      --bg-elevated: #1e2740;
+      --text: #c9d1d9;
+      --text-bright: #e6edf3;
+      --text-dim: #6e7681;
+      --text-muted: #484f58;
+      --green: #3fb950;
+      --green-dim: #1a3a2a;
+      --cyan: #58a6ff;
+      --cyan-dim: #121d2f;
+      --orange: #d29922;
+      --orange-dim: #2a2013;
+      --purple: #bc8cff;
+      --red: #f85149;
+      --border: #21262d;
+      --border-bright: #30363d;
+      --glow: 0 0 20px rgba(88,166,255,0.08);
+      --nav-bg: rgba(10,14,23,0.8);
+      --grid-color: rgba(88,166,255,0.03);
+      --card-left-accent: var(--cyan);
+      --dot-red: #f85149;
+      --dot-orange: #d29922;
+      --dot-green: #3fb950;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    [data-theme="light"] {
+      --bg-deep: #f8f9fa;
+      --bg: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f6f8fa;
+      --bg-elevated: #f0f2f5;
+      --text: #4b5563;
+      --text-bright: #1f2937;
+      --text-dim: #6b7280;
+      --text-muted: #9ca3af;
+      --green: #16a34a;
+      --green-dim: #dcfce7;
+      --cyan: #2563eb;
+      --cyan-dim: #dbeafe;
+      --orange: #b45309;
+      --orange-dim: #fef3c7;
+      --purple: #7c3aed;
+      --red: #ef4444;
+      --border: #e5e7eb;
+      --border-bright: #d1d5db;
+      --glow: 0 1px 8px rgba(0,0,0,0.06);
+      --nav-bg: rgba(255,255,255,0.85);
+      --grid-color: rgba(37,99,235,0.03);
+      --card-left-accent: var(--cyan);
+      --dot-red: #ef4444;
+      --dot-orange: #f59e0b;
+      --dot-green: #22c55e;
     }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html {
-      scroll-behavior: smooth;
-      font-size: 16px;
+      scroll-behavior: smooth; font-size: 16px;
+      color-scheme: dark;
     }
+    html[data-theme="light"] { color-scheme: light; }
 
     body {
-      font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
-      color: var(--text-primary);
+      font-family: 'Noto Sans KR', -apple-system, sans-serif;
+      background: var(--bg-deep);
+      color: var(--text);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      transition: background 0.35s ease, color 0.35s ease;
+    }
+
+    /* Subtle grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
     }
 
     /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: rgba(250, 250, 249, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
-      transition: box-shadow 0.3s;
+      transition: background 0.35s ease, border-color 0.35s ease;
     }
-
-    nav.scrolled {
-      box-shadow: 0 1px 8px rgba(0,0,0,0.06);
-    }
-
     nav .nav-inner {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 56px;
+      max-width: 880px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between; height: 52px;
     }
-
     nav .nav-name {
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: -0.02em;
-      color: var(--text-primary);
+      font-family: 'Fira Code', monospace;
+      font-weight: 600; font-size: 0.85rem; color: var(--green);
     }
-
-    nav .nav-links {
-      display: flex;
-      gap: 0.25rem;
-    }
-
+    nav .nav-name::before { content: '~/'; color: var(--text-dim); }
+    nav .nav-links { display: flex; gap: 0.15rem; }
     nav .nav-links a {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      text-decoration: none;
-      padding: 0.4rem 0.7rem;
-      border-radius: 6px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem; font-weight: 500; color: var(--text-dim);
+      text-decoration: none; padding: 0.35rem 0.65rem; border-radius: 6px;
       transition: all 0.2s;
     }
-
-    nav .nav-links a:hover {
-      color: var(--accent);
-      background: var(--accent-soft);
-    }
+    nav .nav-links a:hover { color: var(--cyan); background: var(--cyan-dim); }
+    nav .nav-links a::before { content: './'; color: var(--text-muted); }
 
     /* ── LAYOUT ── */
-    .container {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
+    .container { max-width: 880px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
 
     /* ── HERO ── */
-    .hero {
-      padding: 8rem 0 4rem;
-      position: relative;
-    }
+    .hero { padding: 7.5rem 0 3rem; position: relative; }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -50vw;
-      right: -50vw;
-      height: 100%;
-      background: linear-gradient(180deg, #f0f4ff 0%, var(--bg) 100%);
-      z-index: -1;
+    .terminal-bar {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 0.4rem 1rem; margin-bottom: 1.5rem;
     }
-
-    .hero-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--accent);
-      background: var(--accent-soft);
-      padding: 0.35rem 0.85rem;
-      border-radius: 100px;
-      margin-bottom: 1.5rem;
+    .terminal-bar .dots { display: flex; gap: 5px; }
+    .terminal-bar .dots span {
+      width: 8px; height: 8px; border-radius: 50%;
     }
-
-    .hero-label .dot {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
+    .terminal-bar .dots span:nth-child(1) { background: var(--dot-red); opacity: 0.8; }
+    .terminal-bar .dots span:nth-child(2) { background: var(--dot-orange); opacity: 0.8; }
+    .terminal-bar .dots span:nth-child(3) { background: var(--dot-green); opacity: 0.8; }
+    .terminal-bar .term-text {
+      font-family: 'Fira Code', monospace; font-size: 0.78rem; color: var(--text-dim);
     }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
+    .terminal-bar .term-text .green { color: var(--green); }
 
     .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.15;
-      margin-bottom: 0.5rem;
+      font-size: 2.8rem; font-weight: 700; letter-spacing: -0.03em;
+      line-height: 1.15; color: var(--text-bright);
     }
-
     .hero h1 .en {
-      display: block;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: var(--text-tertiary);
-      margin-top: 0.25rem;
+      display: block; font-family: 'Fira Code', monospace;
+      font-size: 1.2rem; font-weight: 400; color: var(--text-dim); margin-top: 0.3rem;
     }
-
     .hero-subtitle {
-      font-size: 1.05rem;
-      color: var(--text-secondary);
-      font-weight: 400;
-      margin-top: 1rem;
+      font-size: 1rem; color: var(--text); font-weight: 400; margin-top: 1.25rem;
     }
-
     .hero-contacts {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 2rem;
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem;
     }
-
     .hero-contacts a {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      text-decoration: none;
-      padding: 0.45rem 0.9rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      background: var(--surface);
-      transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: 'Fira Code', monospace; font-size: 0.78rem; font-weight: 500;
+      color: var(--text-dim); text-decoration: none;
+      padding: 0.4rem 0.85rem; border: 1px solid var(--border);
+      border-radius: 8px; background: var(--bg-card); transition: all 0.25s;
     }
-
     .hero-contacts a:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      box-shadow: var(--card-shadow);
+      border-color: var(--cyan); color: var(--cyan);
+      box-shadow: 0 0 12px rgba(88,166,255,0.1);
     }
+    .hero-contacts a svg { width: 14px; height: 14px; flex-shrink: 0; }
 
-    .hero-contacts a svg {
-      width: 14px;
-      height: 14px;
-      flex-shrink: 0;
+    /* ── SECTIONS ── */
+    .section { padding: 3.5rem 0; }
+    .section-header {
+      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem;
     }
+    .section-header h2 {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.1rem; font-weight: 600; color: var(--cyan);
+    }
+    .section-header h2::before { content: '# '; color: var(--text-muted); }
+    .section-header .career-badge {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem; font-weight: 500; color: var(--green);
+      background: var(--green-dim); border: 1px solid rgba(63,185,80,0.2);
+      padding: 0.2rem 0.6rem; border-radius: 100px;
+    }
+    .section-header::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
     /* ── ABOUT ── */
     .about-text {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.85;
+      font-size: 0.92rem; color: var(--text); line-height: 1.85;
     }
+    .about-text + .about-text { margin-top: 0.75rem; }
 
-    .about-text + .about-text {
-      margin-top: 0.8rem;
-    }
-
-    /* ── SECTIONS ── */
-    .section {
-      padding: 4rem 0;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .section-header h2 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .section-header .career-badge {
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--accent);
-      background: var(--accent-soft);
-      padding: 0.25rem 0.65rem;
-      border-radius: 100px;
-    }
-
-    .section-header::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* ── SKILLS GRID ── */
+    /* ── SKILLS ── */
     .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1rem;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.75rem;
     }
-
     .skill-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.25rem;
-      transition: all 0.2s;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.1rem; transition: all 0.25s;
     }
-
     .skill-card:hover {
-      box-shadow: var(--card-shadow-hover);
-      border-color: transparent;
+      border-color: var(--border-bright); box-shadow: var(--glow);
     }
-
     .skill-card .skill-label {
-      font-size: 0.72rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--text-tertiary);
-      margin-bottom: 0.6rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.68rem; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.55rem;
     }
-
-    .skill-card .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-    }
-
+    .skill-card .skill-label::before { content: '// '; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
     .skill-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      font-weight: 500;
-      color: var(--tag-text);
-      background: var(--tag-bg);
-      padding: 0.3rem 0.6rem;
-      border-radius: 6px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem; font-weight: 500;
+      color: var(--cyan); background: var(--cyan-dim);
+      border: 1px solid rgba(88,166,255,0.12);
+      padding: 0.25rem 0.55rem; border-radius: 5px;
     }
 
-    /* ── COMPANY BLOCK ── */
-    .company-block {
-      position: relative;
-      margin-bottom: 3.5rem;
-    }
+    /* ── DIVIDER ── */
+    .divider { width: 100%; height: 1px; background: var(--border); }
 
-    .company-block:last-child {
-      margin-bottom: 0;
-    }
+    /* ── COMPANY ── */
+    .company-block { position: relative; margin-bottom: 3rem; }
+    .company-block:last-child { margin-bottom: 0; }
 
     .company-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 0.4rem;
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 1rem; flex-wrap: wrap; margin-bottom: 0.35rem;
     }
-
-    .company-name {
-      font-size: 1.3rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    .company-name a {
-      color: inherit;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .company-name a:hover {
-      color: var(--accent);
-    }
-
+    .company-name { font-size: 1.2rem; font-weight: 700; color: var(--text-bright); }
+    .company-name a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    .company-name a:hover { color: var(--cyan); }
     .company-role {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--accent);
-      background: var(--accent-soft);
-      padding: 0.25rem 0.7rem;
-      border-radius: 6px;
-      white-space: nowrap;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.78rem; font-weight: 500; color: var(--green);
+      background: var(--green-dim); border: 1px solid rgba(63,185,80,0.15);
+      padding: 0.2rem 0.65rem; border-radius: 6px; white-space: nowrap;
     }
-
     .company-meta {
-      font-size: 0.82rem;
-      color: var(--text-tertiary);
-      margin-bottom: 0.6rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem;
     }
-
     .company-desc {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      line-height: 1.75;
-      margin-bottom: 1.5rem;
+      font-size: 0.88rem; color: var(--text); line-height: 1.7; margin-bottom: 1.25rem;
     }
 
     /* ── PROJECT CARD ── */
     .project-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.75rem;
-      margin-bottom: 1rem;
-      transition: all 0.25s;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.5rem; margin-bottom: 0.75rem;
+      transition: all 0.25s, background 0.35s ease; position: relative;
     }
-
     .project-card:hover {
-      box-shadow: var(--card-shadow-hover);
-      border-color: transparent;
+      border-color: var(--border-bright); box-shadow: var(--glow);
+      background: var(--bg-card-hover);
     }
+    .project-card::before {
+      content: ''; position: absolute; left: 0; top: 1.2rem; bottom: 1.2rem;
+      width: 2px; background: var(--border); border-radius: 2px;
+    }
+    .project-card:hover::before { background: var(--card-left-accent); }
 
     .project-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-bottom: 0.35rem;
+      font-size: 0.98rem; font-weight: 700; color: var(--text-bright);
+      margin-bottom: 0.25rem; padding-left: 0;
     }
-
     .project-subtitle {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      margin-bottom: 1rem;
-      line-height: 1.6;
+      font-size: 0.82rem; color: var(--text-dim); margin-bottom: 0.85rem; line-height: 1.55;
     }
+    .project-subtitle a { color: var(--cyan); text-decoration: none; }
+    .project-subtitle a:hover { text-decoration: underline; }
 
-    .project-details {
-      list-style: none;
-      padding: 0;
-    }
-
+    .project-details { list-style: none; padding: 0; }
     .project-details li {
-      position: relative;
-      padding-left: 1.1rem;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: 0.5rem;
+      position: relative; padding-left: 1.1rem;
+      font-size: 0.82rem; color: var(--text); line-height: 1.65; margin-bottom: 0.4rem;
     }
-
     .project-details li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.55em;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--border);
+      content: '▸'; position: absolute; left: 0; top: 0; color: var(--text-muted);
+      font-family: 'Fira Code', monospace; font-size: 0.7rem;
     }
+    .project-details li.highlight::before { color: var(--green); }
+    .project-details li strong { font-weight: 600; color: var(--text-bright); }
 
-    .project-details li.highlight::before {
-      background: var(--accent);
+    .context-label {
+      font-family: 'Fira Code', monospace;
+      display: inline-block; font-size: 0.68rem; font-weight: 500;
+      color: var(--orange); letter-spacing: 0.03em; margin-right: 0.3rem;
     }
+    .context-label::before { content: '['; color: var(--text-muted); }
+    .context-label::after { content: ']'; color: var(--text-muted); }
 
-    .project-details li strong {
-      font-weight: 600;
-      color: var(--text-primary);
-    }
+    .metric { font-weight: 600; color: var(--green); }
 
-    .project-details .context-label {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-tertiary);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-right: 0.3rem;
+    .squad-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.76rem; font-weight: 500; color: var(--purple);
+      margin-top: 0.6rem; margin-bottom: 0.3rem;
     }
 
     .project-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 1.1rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border-light);
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-top: 0.9rem; padding-top: 0.8rem; border-top: 1px solid var(--border);
     }
-
     .project-meta-item {
-      font-size: 0.78rem;
-      color: var(--text-tertiary);
+      font-size: 0.75rem; color: var(--text-dim);
     }
+    .project-meta-item strong { font-weight: 600; color: var(--text); }
 
-    .project-meta-item strong {
-      font-weight: 600;
-      color: var(--text-secondary);
-    }
-
-    .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem;
-      margin-top: 0.75rem;
-    }
-
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.65rem; }
     .tech-stack .skill-tag {
-      font-size: 0.7rem;
-      padding: 0.2rem 0.5rem;
-      background: var(--border-light);
-    }
-
-    .metric {
-      display: inline;
-      font-weight: 600;
-      color: var(--accent-dark);
-    }
-
-    .squad-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-top: 0.75rem;
-      margin-bottom: 0.35rem;
+      font-size: 0.68rem; padding: 0.18rem 0.45rem;
+      color: var(--text-dim); background: var(--bg-elevated);
+      border-color: var(--border);
     }
 
     /* ── EDUCATION ── */
     .edu-item {
-      display: flex;
-      gap: 1.25rem;
-      align-items: flex-start;
-      padding: 1rem 0;
+      display: flex; gap: 1.25rem; align-items: flex-start; padding: 0.85rem 0;
     }
-
-    .edu-item + .edu-item {
-      border-top: 1px solid var(--border-light);
-    }
-
+    .edu-item + .edu-item { border-top: 1px solid var(--border); }
     .edu-year {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
-      color: var(--text-tertiary);
-      white-space: nowrap;
-      padding-top: 0.15rem;
-      min-width: 130px;
+      font-family: 'Fira Code', monospace; font-size: 0.75rem;
+      color: var(--text-muted); white-space: nowrap; padding-top: 0.1rem; min-width: 130px;
     }
+    .edu-school { font-size: 0.9rem; font-weight: 600; color: var(--text-bright); }
+    .edu-major { font-size: 0.8rem; color: var(--text-dim); }
 
-    .edu-content .edu-school {
-      font-size: 0.92rem;
-      font-weight: 600;
-    }
-
-    .edu-content .edu-major {
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-    }
-
-    /* ── ACTIVITY TABLE ── */
-    .activity-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
+    /* ── ACTIVITY ── */
+    .activity-list { display: flex; flex-direction: column; gap: 0.4rem; }
     .activity-item {
-      display: flex;
-      gap: 1.25rem;
-      align-items: flex-start;
-      padding: 0.85rem 1.1rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      transition: all 0.2s;
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 0.75rem 1rem; background: var(--bg-card);
+      border: 1px solid var(--border); border-radius: 8px; transition: all 0.2s;
     }
-
-    .activity-item:hover {
-      box-shadow: var(--card-shadow);
-    }
-
+    .activity-item:hover { border-color: var(--border-bright); box-shadow: var(--glow); }
     .activity-date {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--text-tertiary);
-      white-space: nowrap;
-      padding-top: 0.1rem;
-      min-width: 120px;
+      font-family: 'Fira Code', monospace; font-size: 0.72rem;
+      color: var(--text-muted); white-space: nowrap; padding-top: 0.1rem; min-width: 110px;
     }
-
     .activity-type {
-      font-size: 0.68rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      padding: 0.2rem 0.5rem;
-      border-radius: 4px;
-      background: var(--tag-bg);
-      color: var(--text-tertiary);
-      white-space: nowrap;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.65rem; font-weight: 500; padding: 0.15rem 0.45rem;
+      border-radius: 4px; white-space: nowrap;
+      background: var(--bg-elevated); color: var(--text-muted); border: 1px solid var(--border);
     }
-
-    .activity-content {
-      flex: 1;
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-    }
-
-    .activity-content strong {
-      color: var(--text-primary);
-      font-weight: 600;
-    }
-
-    .activity-content a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .activity-content a:hover {
-      text-decoration: underline;
-    }
+    .activity-content { flex: 1; font-size: 0.82rem; color: var(--text); }
+    .activity-content strong { color: var(--text-bright); font-weight: 600; }
+    .activity-content a { color: var(--cyan); text-decoration: none; font-weight: 500; }
+    .activity-content a:hover { text-decoration: underline; }
 
     /* ── FOOTER ── */
     footer {
-      padding: 3rem 0;
-      border-top: 1px solid var(--border);
-      text-align: center;
+      padding: 2.5rem 0; border-top: 1px solid var(--border); text-align: center;
     }
-
     footer p {
-      font-size: 0.8rem;
-      color: var(--text-tertiary);
-    }
-
-    /* ── DIVIDER ── */
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: var(--border);
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem; color: var(--text-muted);
     }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
-      .container {
-        padding: 0 1.25rem;
-      }
-
-      .hero {
-        padding: 6.5rem 0 3rem;
-      }
-
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-
-      .hero h1 .en {
-        font-size: 1.1rem;
-      }
-
-      nav .nav-links {
-        gap: 0;
-      }
-
-      nav .nav-links a {
-        padding: 0.4rem 0.5rem;
-        font-size: 0.72rem;
-      }
-
-      .company-header {
-        flex-direction: column;
-        gap: 0.4rem;
-      }
-
-      .skills-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .edu-item, .activity-item {
-        flex-direction: column;
-        gap: 0.3rem;
-      }
-
-      .edu-year, .activity-date {
-        min-width: unset;
-      }
-
-      .project-meta {
-        flex-direction: column;
-        gap: 0.4rem;
-      }
+      .container { padding: 0 1.25rem; }
+      .hero { padding: 6rem 0 2.5rem; }
+      .hero h1 { font-size: 2rem; }
+      nav .nav-links a { padding: 0.35rem 0.4rem; font-size: 0.68rem; }
+      .company-header { flex-direction: column; gap: 0.35rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .edu-item, .activity-item { flex-direction: column; gap: 0.25rem; }
+      .edu-year, .activity-date { min-width: unset; }
     }
 
-    /* ── SCROLL ANIMATIONS ── */
+    /* ── LIGHT THEME OVERRIDES ── */
+    [data-theme="light"] .project-card { box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    [data-theme="light"] .project-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    [data-theme="light"] .skill-card { box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    [data-theme="light"] .skill-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    [data-theme="light"] .skill-tag { color: var(--text-bright); border-color: rgba(37,99,235,0.2); }
+    [data-theme="light"] .tech-stack .skill-tag { color: var(--text-dim); border-color: var(--border); }
+    [data-theme="light"] .activity-item { box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+    [data-theme="light"] nav { box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+
+    /* ── THEME TOGGLE ── */
+    .theme-toggle {
+      display: flex; align-items: center; justify-content: center;
+      width: 34px; height: 34px; border: 1px solid var(--border);
+      border-radius: 8px; background: var(--bg-card); cursor: pointer;
+      color: var(--text-dim); transition: all 0.25s; margin-left: 0.5rem;
+      flex-shrink: 0;
+    }
+    .theme-toggle:hover { color: var(--cyan); border-color: var(--cyan); }
+    .theme-toggle svg { width: 16px; height: 16px; }
+    .theme-toggle .icon-sun { display: none; }
+    .theme-toggle .icon-moon { display: block; }
+    [data-theme="light"] .theme-toggle .icon-sun { display: block; }
+    [data-theme="light"] .theme-toggle .icon-moon { display: none; }
+
+    /* ── ANIMATIONS ── */
     .fade-up {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
     }
-
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Fallback: ensure content is visible if JS fails */
-    .no-js .fade-up {
-      opacity: 1;
-      transform: none;
-    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="nav">
+<nav>
   <div class="nav-inner">
-    <span class="nav-name">김예림</span>
+    <span class="nav-name">rimi-dev</span>
     <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#career">Career</a>
-      <a href="#education">Education</a>
+      <a href="#about">about</a>
+      <a href="#skills">skills</a>
+      <a href="#career">career</a>
+      <a href="#education">edu</a>
+      <button class="theme-toggle" id="theme-toggle" aria-label="테마 전환">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
     </div>
   </div>
 </nav>
@@ -682,9 +435,9 @@
 
   <!-- HERO -->
   <section class="hero" id="about">
-    <div class="hero-label">
-      <span class="dot"></span>
-      Backend Engineer · <span id="total-career"></span>
+    <div class="terminal-bar">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <span class="term-text"><span class="green">rimi</span>@backend ~ $ cat career.yml — <span id="total-career"></span></span>
     </div>
     <h1>
       김예림
@@ -715,81 +468,23 @@
 
   <!-- ABOUT -->
   <section class="section fade-up">
-    <p class="about-text">
-      레거시 시스템을 현대적 아키텍처로 전환한 경험이 다수 있으며, Monolith ↔ MSA 양방향 전환, 언어·프레임워크 마이그레이션, 데이터베이스 이관 등 시스템 진화의 전 과정을 주도적으로 수행해왔습니다.
-    </p>
-    <p class="about-text">
-      패션 커머스(무신사), 헬스케어(비브로스), 온디맨드 매칭(마켓디자이너스) 등 다양한 도메인에서 대규모 트래픽 환경의 서비스를 설계·운영한 경험을 바탕으로, 비즈니스 요구사항을 기술적으로 풀어내는 데 강점을 가지고 있습니다.
-    </p>
-    <p class="about-text">
-      팀 내에서 기술 의사결정에 적극적으로 참여하며, 코드 리뷰와 기술 문서화를 통해 팀 전체의 개발 품질을 높이는 것을 중요하게 생각합니다.
-    </p>
+    <p class="about-text">레거시 시스템을 현대적 아키텍처로 전환한 경험이 다수 있으며, Monolith ↔ MSA 양방향 전환, 언어·프레임워크 마이그레이션, 데이터베이스 이관 등 시스템 진화의 전 과정을 주도적으로 수행해왔습니다.</p>
+    <p class="about-text">패션 커머스(무신사), 헬스케어(비브로스), 온디맨드 매칭(마켓디자이너스) 등 다양한 도메인에서 대규모 트래픽 환경의 서비스를 설계·운영한 경험을 바탕으로, 비즈니스 요구사항을 기술적으로 풀어내는 데 강점을 가지고 있습니다.</p>
+    <p class="about-text">팀 내에서 기술 의사결정에 적극적으로 참여하며, 코드 리뷰와 기술 문서화를 통해 팀 전체의 개발 품질을 높이는 것을 중요하게 생각합니다.</p>
   </section>
 
   <div class="divider"></div>
 
   <!-- SKILLS -->
   <section class="section fade-up" id="skills">
-    <div class="section-header">
-      <h2>Core Skills</h2>
-      <div></div>
-    </div>
+    <div class="section-header"><h2>Core Skills</h2><div></div></div>
     <div class="skills-grid">
-      <div class="skill-card">
-        <div class="skill-label">Language</div>
-        <div class="skill-tags">
-          <span class="skill-tag">TypeScript</span>
-          <span class="skill-tag">Kotlin</span>
-          <span class="skill-tag">Python</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-label">Backend Framework</div>
-        <div class="skill-tags">
-          <span class="skill-tag">NestJS</span>
-          <span class="skill-tag">Spring Boot</span>
-          <span class="skill-tag">Django/DRF</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-label">Database</div>
-        <div class="skill-tags">
-          <span class="skill-tag">MongoDB</span>
-          <span class="skill-tag">MySQL</span>
-          <span class="skill-tag">MS-SQL</span>
-          <span class="skill-tag">PostgreSQL</span>
-          <span class="skill-tag">Redis</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-label">Message / Protocol</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Kafka</span>
-          <span class="skill-tag">SQS</span>
-          <span class="skill-tag">MQTT</span>
-          <span class="skill-tag">WebSocket</span>
-          <span class="skill-tag">gRPC</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-label">Infra / DevOps</div>
-        <div class="skill-tags">
-          <span class="skill-tag">AWS ECS</span>
-          <span class="skill-tag">EKS</span>
-          <span class="skill-tag">Lambda</span>
-          <span class="skill-tag">Jenkins</span>
-          <span class="skill-tag">GitLab CI/CD</span>
-          <span class="skill-tag">ArgoCD</span>
-        </div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-label">Etc.</div>
-        <div class="skill-tags">
-          <span class="skill-tag">FCM</span>
-          <span class="skill-tag">MikroORM</span>
-          <span class="skill-tag">TypeORM</span>
-        </div>
-      </div>
+      <div class="skill-card"><div class="skill-label">Language</div><div class="skill-tags"><span class="skill-tag">TypeScript</span><span class="skill-tag">Kotlin</span><span class="skill-tag">Python</span></div></div>
+      <div class="skill-card"><div class="skill-label">Backend Framework</div><div class="skill-tags"><span class="skill-tag">NestJS</span><span class="skill-tag">Spring Boot</span><span class="skill-tag">Django/DRF</span></div></div>
+      <div class="skill-card"><div class="skill-label">Database</div><div class="skill-tags"><span class="skill-tag">MongoDB</span><span class="skill-tag">MySQL</span><span class="skill-tag">MS-SQL</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">Redis</span></div></div>
+      <div class="skill-card"><div class="skill-label">Message / Protocol</div><div class="skill-tags"><span class="skill-tag">Kafka</span><span class="skill-tag">SQS</span><span class="skill-tag">MQTT</span><span class="skill-tag">WebSocket</span><span class="skill-tag">gRPC</span></div></div>
+      <div class="skill-card"><div class="skill-label">Infra / DevOps</div><div class="skill-tags"><span class="skill-tag">AWS ECS</span><span class="skill-tag">EKS</span><span class="skill-tag">Lambda</span><span class="skill-tag">Jenkins</span><span class="skill-tag">GitLab CI/CD</span><span class="skill-tag">ArgoCD</span></div></div>
+      <div class="skill-card"><div class="skill-label">Etc.</div><div class="skill-tags"><span class="skill-tag">FCM</span><span class="skill-tag">MikroORM</span><span class="skill-tag">TypeORM</span></div></div>
     </div>
   </section>
 
@@ -799,22 +494,18 @@
   <section class="section" id="career">
     <div class="section-header">
       <h2>Career</h2>
-      <span class="career-badge">총 <span id="total-career-2"></span></span>
+      <span class="career-badge"><span id="total-career-2"></span></span>
       <div></div>
     </div>
 
     <!-- 비브로스 -->
     <div class="company-block fade-up">
       <div class="company-header">
-        <div>
-          <div class="company-name"><a href="https://ddocdoc.com/" target="_blank" rel="noopener">비브로스</a></div>
-        </div>
+        <div class="company-name"><a href="https://ddocdoc.com/" target="_blank" rel="noopener">비브로스</a></div>
         <span class="company-role">Backend Engineer</span>
       </div>
-      <div class="company-meta">2025.01 ~ 현재 · <span id="vibros-period"></span> &nbsp;·&nbsp; 헬스케어 서비스 "똑닥" 개발 스타트업</div>
-      <p class="company-desc">
-        백엔드팀 접수/예약 스쿼드 소속으로, MAU 150만 규모 서비스의 예약 시스템 핵심 기능 개편과 신규 서비스 개발을 담당하고 있습니다.
-      </p>
+      <div class="company-meta">2025.01 ~ 현재 · <span id="vibros-period"></span> · 헬스케어 서비스 "똑닥" 개발 스타트업</div>
+      <p class="company-desc">백엔드팀 접수/예약 스쿼드 소속으로, MAU 150만 규모 서비스의 예약 시스템 핵심 기능 개편과 신규 서비스 개발을 담당하고 있습니다.</p>
 
       <div class="project-card">
         <div class="project-title">병원 상담톡 기능 신규 개발</div>
@@ -824,16 +515,8 @@
           <li>자동응답 룰 엔진과 미답변 메시지 리마인드 배치를 추가하여, 병원 측 응대율 향상에 기여</li>
           <li>Kafka Consumer를 통해 타 도메인 이벤트(회원 탈퇴, 병원 정보 변경 등)를 수신하여 채팅방 데이터를 자동 동기화하는 구조를 구현, 도메인 간 정합성을 보장</li>
         </ul>
-        <div class="project-meta">
-          <span class="project-meta-item"><strong>기여도</strong> &nbsp;백엔드 설계 및 구현 전담 (1인), 프론트·앱 개발자 2명과 협업</span>
-        </div>
-        <div class="tech-stack">
-          <span class="skill-tag">Kotlin 2.3.0</span>
-          <span class="skill-tag">Spring Boot 4.0.2</span>
-          <span class="skill-tag">MongoDB</span>
-          <span class="skill-tag">Redis</span>
-          <span class="skill-tag">Kafka</span>
-        </div>
+        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;백엔드 설계 및 구현 전담 (1인), 프론트·앱 개발자 2명과 협업</span></div>
+        <div class="tech-stack"><span class="skill-tag">Kotlin 2.3.0</span><span class="skill-tag">Spring Boot 4.0.2</span><span class="skill-tag">MongoDB</span><span class="skill-tag">Redis</span><span class="skill-tag">Kafka</span></div>
       </div>
 
       <div class="project-card">
@@ -847,17 +530,8 @@
           <li>기존 대비 디버깅 난이도를 낮추는 구조로 개선하여 장애 대응 시간 단축</li>
           <li class="highlight"><strong>성과</strong> &nbsp;월 2~3회 발생하던 중복 예약 이슈를 <span class="metric">사실상 0건</span>으로 해소</li>
         </ul>
-        <div class="project-meta">
-          <span class="project-meta-item"><strong>기여도</strong> &nbsp;스케줄러 도메인 설계 및 개발 주담당, PM·디자이너와 요구사항 협의부터 참여</span>
-        </div>
-        <div class="tech-stack">
-          <span class="skill-tag">NestJS 10.3</span>
-          <span class="skill-tag">TypeScript</span>
-          <span class="skill-tag">MikroORM</span>
-          <span class="skill-tag">MongoDB</span>
-          <span class="skill-tag">Redis</span>
-          <span class="skill-tag">Kafka</span>
-        </div>
+        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;스케줄러 도메인 설계 및 개발 주담당, PM·디자이너와 요구사항 협의부터 참여</span></div>
+        <div class="tech-stack"><span class="skill-tag">NestJS 10.3</span><span class="skill-tag">TypeScript</span><span class="skill-tag">MikroORM</span><span class="skill-tag">MongoDB</span><span class="skill-tag">Redis</span><span class="skill-tag">Kafka</span></div>
       </div>
 
       <div class="project-card">
@@ -867,15 +541,8 @@
           <li>접수 도메인의 API를 식별·분류하여 독립 서비스로 분리하고, API Gateway에 라우팅을 연결</li>
           <li>서비스 간 의존성 정리 및 공통 모듈 추출을 통해 전환 과정의 사이드이펙트를 최소화</li>
         </ul>
-        <div class="project-meta">
-          <span class="project-meta-item"><strong>기여도</strong> &nbsp;접수 도메인 전환 담당</span>
-        </div>
-        <div class="tech-stack">
-          <span class="skill-tag">NestJS 10.3</span>
-          <span class="skill-tag">MikroORM</span>
-          <span class="skill-tag">MongoDB</span>
-          <span class="skill-tag">Redis</span>
-        </div>
+        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;접수 도메인 전환 담당</span></div>
+        <div class="tech-stack"><span class="skill-tag">NestJS 10.3</span><span class="skill-tag">MikroORM</span><span class="skill-tag">MongoDB</span><span class="skill-tag">Redis</span></div>
       </div>
 
       <div class="project-card">
@@ -886,31 +553,19 @@
           <li>차트 프로그램 ↔ 에이전트 간 Socket 통신, 에이전트 ↔ 똑닥 간 MQTT 프로토콜을 적용하여 양방향 실시간 동기화 아키텍처를 설계</li>
           <li>현장 예약 신청 → 똑닥 연동 처리 → 알림톡 자동 발송까지의 전체 플로우를 설계 및 구현</li>
         </ul>
-        <div class="project-meta">
-          <span class="project-meta-item"><strong>기여도</strong> &nbsp;아키텍처 설계 참여 및 백엔드 구현 담당</span>
-        </div>
-        <div class="tech-stack">
-          <span class="skill-tag">NestJS 10.3</span>
-          <span class="skill-tag">MikroORM</span>
-          <span class="skill-tag">MongoDB</span>
-          <span class="skill-tag">Redis</span>
-          <span class="skill-tag">MQTT</span>
-        </div>
+        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;아키텍처 설계 참여 및 백엔드 구현 담당</span></div>
+        <div class="tech-stack"><span class="skill-tag">NestJS 10.3</span><span class="skill-tag">MikroORM</span><span class="skill-tag">MongoDB</span><span class="skill-tag">Redis</span><span class="skill-tag">MQTT</span></div>
       </div>
     </div>
 
     <!-- 무신사 -->
     <div class="company-block fade-up">
       <div class="company-header">
-        <div>
-          <div class="company-name"><a href="https://www.musinsa.com/" target="_blank" rel="noopener">무신사</a></div>
-        </div>
+        <div class="company-name"><a href="https://www.musinsa.com/" target="_blank" rel="noopener">무신사</a></div>
         <span class="company-role">Backend Engineer</span>
       </div>
-      <div class="company-meta">2021.09 ~ 2024.03 · 2년 7개월 &nbsp;·&nbsp; 온라인 패션 커머스 유니콘 기업</div>
-      <p class="company-desc">
-        신사업 개발부서 소속으로 신규 서비스 런칭부터 성장 단계까지의 백엔드 개발을 담당했습니다.
-      </p>
+      <div class="company-meta">2021.09 ~ 2024.03 · 2년 7개월 · 온라인 패션 커머스 유니콘 기업</div>
+      <p class="company-desc">신사업 개발부서 소속으로 신규 서비스 런칭부터 성장 단계까지의 백엔드 개발을 담당했습니다.</p>
 
       <div class="project-card">
         <div class="project-title">액티베이션 · 콘텐츠 스쿼드 — 첫 구매율 30% 증가 기여</div>
@@ -926,14 +581,8 @@
           <li class="highlight">전시/CMS 서비스의 캐싱 구조를 재설계하고, TypeORM 내 slow query를 분석·최적화하여 <span class="metric">관련 API latency 50% 이상 감소</span></li>
           <li>불필요한 DB connection pool 점유 문제를 진단하고 해소하여 DB 안정성 향상</li>
         </ul>
-        <div class="project-meta">
-          <span class="project-meta-item"><strong>기여도</strong> &nbsp;두 스쿼드의 백엔드 전담 개발자로 참여, 각 스쿼드 PM·프론트 개발자와 협업</span>
-        </div>
-        <div class="tech-stack">
-          <span class="skill-tag">NestJS 9.0</span>
-          <span class="skill-tag">TypeScript</span>
-          <span class="skill-tag">Redis</span>
-        </div>
+        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;두 스쿼드의 백엔드 전담 개발자로 참여, 각 스쿼드 PM·프론트 개발자와 협업</span></div>
+        <div class="tech-stack"><span class="skill-tag">NestJS 9.0</span><span class="skill-tag">TypeScript</span><span class="skill-tag">Redis</span></div>
       </div>
 
       <div class="project-card">
@@ -945,16 +594,8 @@
           <li>NestJS · TypeORM 버전업을 수행하고, 배포 파이프라인을 GitLab CI → Jenkins로 전환하여 배포 안정성 및 속도 개선</li>
           <li class="highlight">불필요한 인프라 리소스(미사용 ECS Task, 과잉 프로비저닝 등)를 정리하여 <span class="metric">월 인프라 비용 약 55% 절감</span> (9,000만 원 → 4,000만 원대)</li>
         </ul>
-        <div class="project-meta">
-          <span class="project-meta-item"><strong>기여도</strong> &nbsp;전시·CMS 백엔드 설계 및 개발 주담당, 인프라 개선은 DevOps 엔지니어와 협업</span>
-        </div>
-        <div class="tech-stack">
-          <span class="skill-tag">NestJS 9.0</span>
-          <span class="skill-tag">Redis</span>
-          <span class="skill-tag">SQS</span>
-          <span class="skill-tag">ECS</span>
-          <span class="skill-tag">Jenkins</span>
-        </div>
+        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;전시·CMS 백엔드 설계 및 개발 주담당, 인프라 개선은 DevOps 엔지니어와 협업</span></div>
+        <div class="tech-stack"><span class="skill-tag">NestJS 9.0</span><span class="skill-tag">Redis</span><span class="skill-tag">SQS</span><span class="skill-tag">ECS</span><span class="skill-tag">Jenkins</span></div>
       </div>
 
       <div class="project-card">
@@ -967,32 +608,19 @@
           <li>클라이언트용 API에 Redis 캐싱 레이어를 도입하여 응답 속도 개선 및 DB 부하 분산</li>
           <li>GitLab CI를 활용한 ECS 배포 파이프라인을 구축하여 자동화된 배포 환경을 마련</li>
         </ul>
-        <div class="project-meta">
-          <span class="project-meta-item"><strong>기여도</strong> &nbsp;전시·공통·CS 도메인 백엔드 전담 (런칭 준비 플랫폼 파트 4명 중 1인 → 런칭 후 8명 중 1인), 결제 파트(Java)와 gRPC 통신 인터페이스 협의</span>
-        </div>
-        <div class="tech-stack">
-          <span class="skill-tag">NestJS 8.0</span>
-          <span class="skill-tag">gRPC</span>
-          <span class="skill-tag">Redis</span>
-          <span class="skill-tag">SQS</span>
-          <span class="skill-tag">ECS</span>
-          <span class="skill-tag">GitLab CI/CD</span>
-        </div>
+        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;전시·공통·CS 도메인 백엔드 전담 (런칭 준비 플랫폼 파트 4명 중 1인 → 런칭 후 8명 중 1인), 결제 파트(Java)와 gRPC 통신 인터페이스 협의</span></div>
+        <div class="tech-stack"><span class="skill-tag">NestJS 8.0</span><span class="skill-tag">gRPC</span><span class="skill-tag">Redis</span><span class="skill-tag">SQS</span><span class="skill-tag">ECS</span><span class="skill-tag">GitLab CI/CD</span></div>
       </div>
     </div>
 
     <!-- 마켓디자이너스 -->
     <div class="company-block fade-up">
       <div class="company-header">
-        <div>
-          <div class="company-name"><a href="https://wematch.com/" target="_blank" rel="noopener">마켓디자이너스</a></div>
-        </div>
+        <div class="company-name"><a href="https://wematch.com/" target="_blank" rel="noopener">마켓디자이너스</a></div>
         <span class="company-role">Backend Engineer → Lead</span>
       </div>
-      <div class="company-meta">2020.09 ~ 2021.09 · 1년 1개월 &nbsp;·&nbsp; 위매치, 튜터링 등 온디맨드 매칭 플랫폼 스타트업</div>
-      <p class="company-desc">
-        Backend Engineer로 입사하여 <strong>Backend 개발 팀 Lead</strong>까지 성장하며, 레거시 시스템 전환 프로젝트를 주도했습니다.
-      </p>
+      <div class="company-meta">2020.09 ~ 2021.09 · 1년 1개월 · 위매치, 튜터링 등 온디맨드 매칭 플랫폼 스타트업</div>
+      <p class="company-desc">Backend Engineer로 입사하여 <strong>Backend 개발 팀 Lead</strong>까지 성장하며, 레거시 시스템 전환 프로젝트를 주도했습니다.</p>
 
       <div class="project-card">
         <div class="project-title">이사 매칭 시스템 통합 전환</div>
@@ -1002,18 +630,8 @@
           <li>Raw SQL 쿼리를 Django ORM으로 전환하여 코드 가독성과 유지보수성을 대폭 향상</li>
           <li>MS-SQL → MySQL 데이터베이스 마이그레이션을 수행하며 데이터 정합성 검증 절차를 수립</li>
         </ul>
-        <div class="project-meta">
-          <span class="project-meta-item"><strong>기여도</strong> &nbsp;전환 프로젝트 기술 리드, 설계·개발·데이터 마이그레이션 전 과정 주도</span>
-        </div>
-        <div class="tech-stack">
-          <span class="skill-tag">DRF</span>
-          <span class="skill-tag">Django 2.1</span>
-          <span class="skill-tag">Python 3.8</span>
-          <span class="skill-tag">MS-SQL</span>
-          <span class="skill-tag">MySQL</span>
-          <span class="skill-tag">EKS</span>
-          <span class="skill-tag">ArgoCD</span>
-        </div>
+        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;전환 프로젝트 기술 리드, 설계·개발·데이터 마이그레이션 전 과정 주도</span></div>
+        <div class="tech-stack"><span class="skill-tag">DRF</span><span class="skill-tag">Django 2.1</span><span class="skill-tag">Python 3.8</span><span class="skill-tag">MS-SQL</span><span class="skill-tag">MySQL</span><span class="skill-tag">EKS</span><span class="skill-tag">ArgoCD</span></div>
       </div>
 
       <div class="project-card">
@@ -1023,17 +641,8 @@
           <li>타사 OpenAPI 연동을 통한 안심번호 발급·관리 시스템과 카카오 알림톡 발송 체계, 발급 로그 체계를 구축</li>
           <li>Firebase Cloud Messaging을 Google 권장 방식(FCM HTTP v1)으로 마이그레이션</li>
         </ul>
-        <div class="project-meta">
-          <span class="project-meta-item"><strong>기여도</strong> &nbsp;설계 및 개발 전담</span>
-        </div>
-        <div class="tech-stack">
-          <span class="skill-tag">NestJS</span>
-          <span class="skill-tag">TypeScript</span>
-          <span class="skill-tag">EKS</span>
-          <span class="skill-tag">ArgoCD</span>
-          <span class="skill-tag">MS-SQL</span>
-          <span class="skill-tag">MySQL</span>
-        </div>
+        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;설계 및 개발 전담</span></div>
+        <div class="tech-stack"><span class="skill-tag">NestJS</span><span class="skill-tag">TypeScript</span><span class="skill-tag">EKS</span><span class="skill-tag">ArgoCD</span><span class="skill-tag">MS-SQL</span><span class="skill-tag">MySQL</span></div>
       </div>
 
       <div class="project-card">
@@ -1044,14 +653,8 @@
           <li>각 서비스 API에 토큰 기반 인증 미들웨어를 적용하여 보안 수준 향상</li>
           <li class="highlight"><strong>성과</strong> &nbsp;토큰 기반 인증 도입으로 인증 SMS 발송 건수 대폭 감소, 월 SMS 비용 절감</li>
         </ul>
-        <div class="project-meta">
-          <span class="project-meta-item"><strong>기여도</strong> &nbsp;인증 서버 설계 및 구현 전담</span>
-        </div>
-        <div class="tech-stack">
-          <span class="skill-tag">Kotlin</span>
-          <span class="skill-tag">Spring Boot</span>
-          <span class="skill-tag">Redis</span>
-        </div>
+        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;인증 서버 설계 및 구현 전담</span></div>
+        <div class="tech-stack"><span class="skill-tag">Kotlin</span><span class="skill-tag">Spring Boot</span><span class="skill-tag">Redis</span></div>
       </div>
 
       <div class="project-card">
@@ -1062,30 +665,19 @@
           <li>실행 주기가 잦은 배치(매 N분 등)는 Django-Celery 기반 배치 서버를 별도 구축하고 관리자 페이지를 개발</li>
           <li class="highlight"><strong>성과</strong> &nbsp;Windows 서버 운영 비용 제거, 배치 실행 모니터링 체계 확보</li>
         </ul>
-        <div class="project-meta">
-          <span class="project-meta-item"><strong>기여도</strong> &nbsp;전환 설계 및 개발 주도 (85건 전수 전환)</span>
-        </div>
-        <div class="tech-stack">
-          <span class="skill-tag">Django 2.1</span>
-          <span class="skill-tag">Python 3.8</span>
-          <span class="skill-tag">AWS Lambda</span>
-          <span class="skill-tag">EventBridge</span>
-        </div>
+        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;전환 설계 및 개발 주도 (85건 전수 전환)</span></div>
+        <div class="tech-stack"><span class="skill-tag">Django 2.1</span><span class="skill-tag">Python 3.8</span><span class="skill-tag">AWS Lambda</span><span class="skill-tag">EventBridge</span></div>
       </div>
     </div>
 
     <!-- 비투텍 -->
     <div class="company-block fade-up">
       <div class="company-header">
-        <div>
-          <div class="company-name"><a href="https://www.b2tech.co.kr/" target="_blank" rel="noopener">비투텍</a></div>
-        </div>
+        <div class="company-name"><a href="https://www.b2tech.co.kr/" target="_blank" rel="noopener">비투텍</a></div>
         <span class="company-role">Backend &amp; App Developer</span>
       </div>
-      <div class="company-meta">2020.03 ~ 2020.09 · 7개월 &nbsp;·&nbsp; 관제시스템 소프트웨어 개발 스타트업</div>
-      <p class="company-desc">
-        솔루션개발팀에서 스마트 송장 시스템의 백엔드 및 모바일 앱 개발을 담당했습니다.
-      </p>
+      <div class="company-meta">2020.03 ~ 2020.09 · 7개월 · 관제시스템 소프트웨어 개발 스타트업</div>
+      <p class="company-desc">솔루션개발팀에서 스마트 송장 시스템의 백엔드 및 모바일 앱 개발을 담당했습니다.</p>
 
       <div class="project-card">
         <div class="project-title">스마트 송장 관리자 웹사이트 개발</div>
@@ -1094,14 +686,8 @@
           <li>기사 실시간 경로 추적, 현장 매칭, 운반 데이터 기반 대시보드 통계 산출 등 핵심 기능을 개발</li>
           <li>기존 PHP 기반 관리자 페이지를 Django로 전면 전환하고, Flutter 앱용 REST API를 DRF로 구축</li>
         </ul>
-        <div class="project-meta">
-          <span class="project-meta-item"><strong>기여도</strong> &nbsp;백엔드 전환 개발 및 API 설계 전담</span>
-        </div>
-        <div class="tech-stack">
-          <span class="skill-tag">Django 2.1</span>
-          <span class="skill-tag">Python 3.8</span>
-          <span class="skill-tag">MySQL 8</span>
-        </div>
+        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;백엔드 전환 개발 및 API 설계 전담</span></div>
+        <div class="tech-stack"><span class="skill-tag">Django 2.1</span><span class="skill-tag">Python 3.8</span><span class="skill-tag">MySQL 8</span></div>
       </div>
 
       <div class="project-card">
@@ -1111,14 +697,8 @@
           <li>GPS 기반 자동 출발/도착 처리, 실시간 위치 좌표 서버 전송, Push 메시지 수신 기능을 구현</li>
           <li>UI 설계부터 Flutter 개발까지 전담 · <a href="https://play.google.com/store/apps/details?id=smart_invoice.btocare.btocare" target="_blank" rel="noopener">Android</a> · <a href="https://apps.apple.com/us/app/%EC%8A%A4%EB%A7%88%ED%8A%B8%EC%86%A1%EC%9E%A5-b2groups/id1507969340?l=ko&ls=1" target="_blank" rel="noopener">iOS</a></li>
         </ul>
-        <div class="project-meta">
-          <span class="project-meta-item"><strong>기여도</strong> &nbsp;UI 설계 및 앱 개발 단독 수행</span>
-        </div>
-        <div class="tech-stack">
-          <span class="skill-tag">Flutter 1.20</span>
-          <span class="skill-tag">Android</span>
-          <span class="skill-tag">iOS</span>
-        </div>
+        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;UI 설계 및 앱 개발 단독 수행</span></div>
+        <div class="tech-stack"><span class="skill-tag">Flutter 1.20</span><span class="skill-tag">Android</span><span class="skill-tag">iOS</span></div>
       </div>
 
       <div class="project-card">
@@ -1127,26 +707,18 @@
         <ul class="project-details">
           <li>데이터베이스 설계 및 백엔드 개발 담당 (대학 소개, 상담 스케줄 예약, 관리자 페이지, 카카오톡 알림)</li>
         </ul>
-        <div class="tech-stack">
-          <span class="skill-tag">Django 2.1</span>
-          <span class="skill-tag">Python 3.8</span>
-          <span class="skill-tag">PostgreSQL</span>
-        </div>
+        <div class="tech-stack"><span class="skill-tag">Django 2.1</span><span class="skill-tag">Python 3.8</span><span class="skill-tag">PostgreSQL</span></div>
       </div>
     </div>
 
     <!-- 코리아써키트 -->
     <div class="company-block fade-up">
       <div class="company-header">
-        <div>
-          <div class="company-name"><a href="https://www.kcg.co.kr/" target="_blank" rel="noopener">코리아써키트</a></div>
-        </div>
+        <div class="company-name"><a href="https://www.kcg.co.kr/" target="_blank" rel="noopener">코리아써키트</a></div>
         <span class="company-role">IT Engineer</span>
       </div>
-      <div class="company-meta">2016.09 ~ 2017.11 · 1년 3개월 &nbsp;·&nbsp; 영풍그룹 계열 PCB 제조 대기업</div>
-      <p class="company-desc">
-        정보시스템팀에서 사내 ERP, MES, 그룹웨어 등 전사 시스템의 개발 및 유지보수를 담당했습니다.
-      </p>
+      <div class="company-meta">2016.09 ~ 2017.11 · 1년 3개월 · 영풍그룹 계열 PCB 제조 대기업</div>
+      <p class="company-desc">정보시스템팀에서 사내 ERP, MES, 그룹웨어 등 전사 시스템의 개발 및 유지보수를 담당했습니다.</p>
 
       <div class="project-card">
         <div class="project-title">사내 ERP – 그룹웨어 전자결재 연동</div>
@@ -1155,12 +727,7 @@
           <li>ERP에 입력된 데이터를 전자결재로 자동 전송하는 시스템을 구현</li>
           <li class="highlight">종이 결재 → 전자결재 전환을 위한 회계팀 교육·가이드 작성 및 헬프데스크를 운영하여 <span class="metric">도입 1개월 만에 100% 전환 달성</span></li>
         </ul>
-        <div class="tech-stack">
-          <span class="skill-tag">PowerBuilder 7.0</span>
-          <span class="skill-tag">Visual Basic 6.0</span>
-          <span class="skill-tag">JSP</span>
-          <span class="skill-tag">MS-SQL Server</span>
-        </div>
+        <div class="tech-stack"><span class="skill-tag">PowerBuilder 7.0</span><span class="skill-tag">Visual Basic 6.0</span><span class="skill-tag">JSP</span><span class="skill-tag">MS-SQL Server</span></div>
       </div>
     </div>
   </section>
@@ -1169,23 +736,14 @@
 
   <!-- EDUCATION -->
   <section class="section fade-up" id="education">
-    <div class="section-header">
-      <h2>Education</h2>
-      <div></div>
-    </div>
+    <div class="section-header"><h2>Education</h2><div></div></div>
     <div class="edu-item">
       <span class="edu-year">2017.03 ~ 2020.02</span>
-      <div class="edu-content">
-        <div class="edu-school">한양사이버대학교</div>
-        <div class="edu-major">컴퓨터공학 전공 (편입/졸업)</div>
-      </div>
+      <div><div class="edu-school">한양사이버대학교</div><div class="edu-major">컴퓨터공학 전공 (편입/졸업)</div></div>
     </div>
     <div class="edu-item">
       <span class="edu-year">2014.03 ~ 2017.02</span>
-      <div class="edu-content">
-        <div class="edu-school">한양여자대학교</div>
-        <div class="edu-major">컴퓨터정보 전공 (졸업)</div>
-      </div>
+      <div><div class="edu-school">한양여자대학교</div><div class="edu-major">컴퓨터정보 전공 (졸업)</div></div>
     </div>
   </section>
 
@@ -1193,19 +751,12 @@
 
   <!-- ACTIVITY -->
   <section class="section fade-up">
-    <div class="section-header">
-      <h2>Activity &amp; Projects</h2>
-      <div></div>
-    </div>
+    <div class="section-header"><h2>Activity &amp; Projects</h2><div></div></div>
     <div class="activity-list">
       <div class="activity-item">
         <span class="activity-date">2020.06 ~ 07</span>
         <span class="activity-type">프로젝트</span>
-        <div class="activity-content">
-          <strong>SQL To ORM</strong> — Raw SQL을 Django ORM으로 변환하는 도구 개발 · 
-          <a href="https://github.com/rimi-dev/sql_to_orm" target="_blank" rel="noopener">GitHub</a> · 
-          <a href="https://velog.io/@rimi/%EA%B0%9C%EB%B0%9C%EC%9D%BC%EC%A7%80-SQL-To-ORM-1" target="_blank" rel="noopener">Blog</a>
-        </div>
+        <div class="activity-content"><strong>SQL To ORM</strong> — Raw SQL을 Django ORM으로 변환하는 도구 개발 · <a href="https://github.com/rimi-dev/sql_to_orm" target="_blank" rel="noopener">GitHub</a> · <a href="https://velog.io/@rimi/%EA%B0%9C%EB%B0%9C%EC%9D%BC%EC%A7%80-SQL-To-ORM-1" target="_blank" rel="noopener">Blog</a></div>
       </div>
       <div class="activity-item">
         <span class="activity-date">2017.05</span>
@@ -1215,10 +766,7 @@
       <div class="activity-item">
         <span class="activity-date">2016.05 ~ 10</span>
         <span class="activity-type">졸업작품</span>
-        <div class="activity-content">
-          <strong>Arduino + Android IoT 시스템</strong> — 아두이노 기반 도어락 원격 제어 시스템 · 
-          <a href="https://velog.io/@rimi/%EC%A1%B8%EC%97%85%EC%9E%91%ED%92%88-Arduino%EC%99%80-Android-%EC%97%B0%EA%B2%B0%ED%95%98%EC%97%AC-IoT%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%A0%9C%EC%9E%91" target="_blank" rel="noopener">Blog</a>
-        </div>
+        <div class="activity-content"><strong>Arduino + Android IoT 시스템</strong> — 아두이노 기반 도어락 원격 제어 시스템 · <a href="https://velog.io/@rimi/%EC%A1%B8%EC%97%85%EC%9E%91%ED%92%88-Arduino%EC%99%80-Android-%EC%97%B0%EA%B2%B0%ED%95%98%EC%97%AC-IoT%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%A0%9C%EC%9E%91" target="_blank" rel="noopener">Blog</a></div>
       </div>
       <div class="activity-item">
         <span class="activity-date">2016.03</span>
@@ -1239,7 +787,6 @@
   </section>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="container">
     <p>&copy; 2025 김예림 (Rimi Kim). All rights reserved.</p>
@@ -1247,70 +794,68 @@
 </footer>
 
 <script>
-  // ── 경력 자동 계산 (LinkedIn 방식: 시작월·종료월 모두 포함) ──
+  // ── Theme Toggle ──
+  const html = document.documentElement;
+  const toggleBtn = document.getElementById('theme-toggle');
+  const saved = window.localStorage ? localStorage.getItem('theme') : null;
+  if (saved) html.setAttribute('data-theme', saved);
+
+  toggleBtn.addEventListener('click', () => {
+    const current = html.getAttribute('data-theme');
+    const next = current === 'light' ? 'dark' : 'light';
+    if (next === 'dark') {
+      html.removeAttribute('data-theme');
+    } else {
+      html.setAttribute('data-theme', next);
+    }
+    try { localStorage.setItem('theme', next); } catch(e) {}
+  });
+
+  // ── Career auto-calculation (LinkedIn-style: inclusive months) ──
   const careers = [
-    { start: [2025, 1], end: null },        // 비브로스 (현재 재직중)
-    { start: [2021, 9], end: [2024, 3] },   // 무신사
-    { start: [2020, 9], end: [2021, 9] },   // 마켓디자이너스
-    { start: [2020, 3], end: [2020, 9] },   // 비투텍
-    { start: [2016, 9], end: [2017, 11] },  // 코리아써키트
+    { start: [2025, 1], end: null },
+    { start: [2021, 9], end: [2024, 3] },
+    { start: [2020, 9], end: [2021, 9] },
+    { start: [2020, 3], end: [2020, 9] },
+    { start: [2016, 9], end: [2017, 11] },
   ];
 
-  function calcMonths(startYear, startMonth, endYear, endMonth) {
-    return (endYear - startYear) * 12 + (endMonth - startMonth) + 1;
-  }
-
-  function formatPeriod(totalMonths) {
-    const years = Math.floor(totalMonths / 12);
-    const months = totalMonths % 12;
-    if (years === 0) return months + '개월';
-    if (months === 0) return years + '년';
-    return years + '년 ' + months + '개월';
+  function calcMonths(sy, sm, ey, em) { return (ey - sy) * 12 + (em - sm) + 1; }
+  function formatPeriod(m) {
+    const y = Math.floor(m / 12), mo = m % 12;
+    if (!y) return mo + '개월';
+    if (!mo) return y + '년';
+    return y + '년 ' + mo + '개월';
   }
 
   const now = new Date();
-  const nowYear = now.getFullYear();
-  const nowMonth = now.getMonth() + 1;
-
-  let totalMonths = 0;
-  let vibrosMonths = 0;
-
+  let total = 0, vibros = 0;
   careers.forEach((c, i) => {
-    const ey = c.end ? c.end[0] : nowYear;
-    const em = c.end ? c.end[1] : nowMonth;
-    const months = calcMonths(c.start[0], c.start[1], ey, em);
-    totalMonths += months;
-    if (i === 0) vibrosMonths = months;
+    const ey = c.end ? c.end[0] : now.getFullYear();
+    const em = c.end ? c.end[1] : now.getMonth() + 1;
+    const m = calcMonths(c.start[0], c.start[1], ey, em);
+    total += m;
+    if (i === 0) vibros = m;
   });
 
-  const careerYear = Math.ceil(totalMonths / 12);
-  const totalStr = formatPeriod(totalMonths);
-  const vibrosStr = formatPeriod(vibrosMonths);
+  document.getElementById('total-career').textContent = formatPeriod(total);
+  document.getElementById('total-career-2').textContent = formatPeriod(total);
+  document.getElementById('career-year').textContent = Math.ceil(total / 12);
+  document.getElementById('vibros-period').textContent = formatPeriod(vibros);
+  document.getElementById('meta-desc').setAttribute('content', Math.ceil(total / 12) + '년차 백엔드 엔지니어 김예림의 경력기술서');
 
-  document.getElementById('total-career').textContent = totalStr;
-  document.getElementById('total-career-2').textContent = totalStr;
-  document.getElementById('career-year').textContent = careerYear;
-  document.getElementById('vibros-period').textContent = vibrosStr;
-  document.getElementById('meta-desc').setAttribute('content', careerYear + '년차 백엔드 엔지니어 김예림의 경력기술서');
-
-  // Nav scroll shadow
-  const nav = document.getElementById('nav');
+  // Nav scroll
+  const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 10);
+    nav.style.boxShadow = window.scrollY > 10 ? '0 1px 12px rgba(0,0,0,0.3)' : 'none';
   });
 
   // Scroll fade-in
   if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
     }, { threshold: 0.05 });
-
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
   } else {
     document.querySelectorAll('.fade-up').forEach(el => el.classList.add('visible'));
   }
