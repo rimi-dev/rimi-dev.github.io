@@ -318,6 +318,8 @@
       font-size: 0.75rem; color: var(--text-dim);
     }
     .project-meta-item strong { font-weight: 600; color: var(--text); }
+    .project-meta-item a { color: var(--cyan); text-decoration: none; font-weight: 500; }
+    .project-meta-item a:hover { text-decoration: underline; }
 
     .tech-stack { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.65rem; }
     .tech-stack .skill-tag {
@@ -536,8 +538,20 @@
           <li>기존 대비 디버깅 난이도를 낮추는 구조로 개선하여 장애 대응 시간 단축</li>
           <li class="highlight"><strong>성과</strong> &nbsp;월 2~3회 발생하던 중복 예약 이슈를 <span class="metric">사실상 0건</span>으로 해소</li>
         </ul>
-        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;스케줄러 도메인 설계 및 개발 주담당, PM·디자이너와 요구사항 협의부터 참여</span></div>
+        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;스케줄러 도메인 설계 및 개발 주담당, PM·디자이너와 요구사항 협의부터 참여</span><span class="project-meta-item"><strong>관련 글</strong> &nbsp;<a href="https://boostbrothers.github.io/2026-03-24-reservation-lego" target="_blank" rel="noopener">사내 기술블로그</a></span></div>
         <div class="tech-stack"><span class="skill-tag">NestJS 10.3</span><span class="skill-tag">TypeScript</span><span class="skill-tag">MikroORM</span><span class="skill-tag">MongoDB</span><span class="skill-tag">Redis</span><span class="skill-tag">Kafka</span></div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-title">양방향 예약 시스템 구축</div>
+        <div class="project-subtitle">병원 차트 프로그램 ↔ 똑닥 시스템 간 실시간 양방향 데이터 동기화 구현</div>
+        <ul class="project-details">
+          <li><span class="context-label">배경</span>기존에는 차트 프로그램이 HTTP Polling 방식으로 단방향 통신만 가능하여 예약 상태 불일치 문제가 발생</li>
+          <li>차트 프로그램 ↔ 똑닥 에이전트 간 Socket 통신, 똑닥 에이전트 ↔ 똑닥 백엔드 간 MQTT 프로토콜을 적용하여 양방향 실시간 동기화 아키텍처를 설계</li>
+          <li>현장 예약 신청 → 똑닥 연동 처리 → 알림톡 자동 발송까지의 전체 플로우를 설계 및 구현</li>
+        </ul>
+        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;백엔드 구현 담당</span></div>
+        <div class="tech-stack"><span class="skill-tag">NestJS 10.3</span><span class="skill-tag">MikroORM</span><span class="skill-tag">MongoDB</span><span class="skill-tag">Redis</span><span class="skill-tag">MQTT</span></div>
       </div>
     </div>
 
