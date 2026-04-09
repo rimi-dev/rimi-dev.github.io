@@ -3,430 +3,619 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
-  <title>김예림 (Rimi Kim) — Backend Engineer</title>
+  <title>김예림 (Yerim Kim) — Backend Engineer</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="description" id="meta-desc" content="백엔드 엔지니어 김예림의 경력기술서">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-deep: #0a0e17;
-      --bg: #0f1420;
-      --bg-card: #151b2b;
-      --bg-card-hover: #1a2236;
-      --bg-elevated: #1e2740;
-      --text: #c9d1d9;
-      --text-bright: #e6edf3;
-      --text-dim: #6e7681;
-      --text-muted: #484f58;
-      --green: #3fb950;
-      --green-dim: #1a3a2a;
-      --cyan: #58a6ff;
-      --cyan-dim: #121d2f;
-      --orange: #d29922;
-      --orange-dim: #2a2013;
-      --purple: #bc8cff;
-      --red: #f85149;
-      --border: #21262d;
-      --border-bright: #30363d;
-      --glow: 0 0 20px rgba(88,166,255,0.08);
-      --nav-bg: rgba(10,14,23,0.8);
-      --grid-color: rgba(88,166,255,0.03);
-      --card-left-accent: var(--cyan);
-      --dot-red: #f85149;
-      --dot-orange: #d29922;
-      --dot-green: #3fb950;
+      --bg: #FFFDF0;
+      --bg-card: #ffffff;
+      --text: #1a1a1a;
+      --text-sub: #666;
+      --text-dim: #999;
+      --border: #1a1a1a;
+      --shadow: #1a1a1a;
+      --accent: #6366f1;
+      --nav-bg: rgba(255,253,240,0.92);
+      --skill-lang: #FFE566;
+      --skill-framework: #A5F3FC;
+      --skill-db: #C4B5FD;
+      --skill-message: #BBF7D0;
+      --skill-infra: #FBCFE8;
+      --skill-etc: #FED7AA;
+      --badge-bg: #FFE566;
+      --badge-text: #1a1a1a;
+      --card-shadow: 6px 6px 0px var(--shadow);
+      --card-shadow-hover: 8px 8px 0px var(--shadow);
+      --small-shadow: 4px 4px 0px var(--shadow);
+      --tag-shadow: 2px 2px 0px var(--shadow);
+      --radius-lg: 16px;
+      --radius-sm: 12px;
+      --border-w: 3px;
+      --divider: #1a1a1a;
     }
 
-    [data-theme="light"] {
-      --bg-deep: #f8f9fa;
-      --bg: #ffffff;
-      --bg-card: #ffffff;
-      --bg-card-hover: #f6f8fa;
-      --bg-elevated: #f0f2f5;
-      --text: #4b5563;
-      --text-bright: #1f2937;
-      --text-dim: #6b7280;
-      --text-muted: #9ca3af;
-      --green: #16a34a;
-      --green-dim: #dcfce7;
-      --cyan: #2563eb;
-      --cyan-dim: #dbeafe;
-      --orange: #b45309;
-      --orange-dim: #fef3c7;
-      --purple: #7c3aed;
-      --red: #ef4444;
-      --border: #e5e7eb;
-      --border-bright: #d1d5db;
-      --glow: 0 1px 8px rgba(0,0,0,0.06);
-      --nav-bg: rgba(255,255,255,0.85);
-      --grid-color: rgba(37,99,235,0.03);
-      --card-left-accent: var(--cyan);
-      --dot-red: #ef4444;
-      --dot-orange: #f59e0b;
-      --dot-green: #22c55e;
+    [data-theme="dark"] {
+      --bg: #1a1a1a;
+      --bg-card: #2a2a2a;
+      --text: #f0f0f0;
+      --text-sub: #aaa;
+      --text-dim: #777;
+      --border: #444;
+      --shadow: #000;
+      --accent: #818cf8;
+      --nav-bg: rgba(26,26,26,0.92);
+      --skill-lang: #b8a320;
+      --skill-framework: #4d8a96;
+      --skill-db: #7a6db0;
+      --skill-message: #5a9a6a;
+      --skill-infra: #a06a88;
+      --skill-etc: #b08a5a;
+      --badge-bg: #b8a320;
+      --badge-text: #1a1a1a;
+      --card-shadow: 4px 4px 0px #000;
+      --card-shadow-hover: 6px 6px 0px #000;
+      --small-shadow: 3px 3px 0px #000;
+      --tag-shadow: 2px 2px 0px #000;
+      --divider: #444;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html {
-      scroll-behavior: smooth; font-size: 16px;
-      color-scheme: dark;
+      scroll-behavior: smooth;
+      font-size: 16px;
     }
-    html[data-theme="light"] { color-scheme: light; }
 
     body {
-      font-family: 'Noto Sans KR', -apple-system, sans-serif;
-      background: var(--bg-deep);
+      font-family: 'Noto Sans KR', 'Space Grotesk', -apple-system, sans-serif;
+      background: var(--bg);
       color: var(--text);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
-      transition: background 0.35s ease, color 0.35s ease;
-    }
-
-    /* Subtle grid background */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: 0;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       background: var(--nav-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-      transition: background 0.35s ease, border-color 0.35s ease;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: var(--border-w) solid var(--border);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
     }
-    nav .nav-inner {
-      max-width: 880px; margin: 0 auto; padding: 0 2rem;
-      display: flex; align-items: center; justify-content: space-between; height: 52px;
+    nav.scrolled {
+      box-shadow: 0 4px 0px var(--shadow);
     }
-    nav .nav-name {
-      font-family: 'Fira Code', monospace;
-      font-weight: 600; font-size: 0.85rem; color: var(--green);
+    .nav-inner {
+      max-width: 860px; margin: 0 auto; padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between; height: 56px;
     }
-    nav .nav-name::before { content: '~/'; color: var(--text-dim); }
-    nav .nav-links { display: flex; gap: 0.15rem; }
-    nav .nav-links a {
-      font-family: 'Fira Code', monospace;
-      font-size: 0.75rem; font-weight: 500; color: var(--text-dim);
-      text-decoration: none; padding: 0.35rem 0.65rem; border-radius: 6px;
-      transition: all 0.2s;
+    .nav-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; font-size: 1.05rem; color: var(--text);
+      text-decoration: none;
     }
-    nav .nav-links a:hover { color: var(--cyan); background: var(--cyan-dim); }
-    nav .nav-links a::before { content: './'; color: var(--text-muted); }
+    .nav-name span { font-size: 0.85em; }
+    .nav-links { display: flex; align-items: center; gap: 0.35rem; }
+    .nav-links a {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem; font-weight: 600; color: var(--text);
+      text-decoration: none; padding: 0.35rem 0.7rem;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      transition: all 0.15s ease;
+    }
+    .nav-links a:hover {
+      background: var(--badge-bg);
+      border-color: var(--border);
+      box-shadow: 2px 2px 0px var(--shadow);
+      transform: translate(-1px, -1px);
+    }
+
+    /* ── THEME TOGGLE ── */
+    .theme-toggle {
+      display: flex; align-items: center; justify-content: center;
+      width: 38px; height: 38px;
+      border: var(--border-w) solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-card);
+      cursor: pointer; color: var(--text);
+      transition: all 0.15s ease;
+      margin-left: 0.5rem; flex-shrink: 0;
+      box-shadow: var(--tag-shadow);
+    }
+    .theme-toggle:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px var(--shadow);
+    }
+    .theme-toggle:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0px var(--shadow);
+    }
+    .theme-toggle svg { width: 18px; height: 18px; }
+    .theme-toggle .icon-sun { display: none; }
+    .theme-toggle .icon-moon { display: block; }
+    [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+    [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
     /* ── LAYOUT ── */
-    .container { max-width: 880px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 2rem; position: relative; }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      display: inline-block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      background: var(--badge-bg); color: var(--badge-text);
+      border: 2px solid var(--border);
+      padding: 0.25rem 0.75rem;
+      border-radius: 8px;
+      box-shadow: var(--tag-shadow);
+      margin-bottom: 1.25rem;
+    }
+    .section-label-row {
+      display: flex; align-items: center; gap: 0.65rem;
+      margin-bottom: 1.25rem;
+    }
+    .career-total-badge {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.72rem; font-weight: 600;
+      background: var(--bg-card); color: var(--accent);
+      border: 2px solid var(--border);
+      padding: 0.2rem 0.6rem;
+      border-radius: 8px;
+      box-shadow: var(--tag-shadow);
+    }
 
     /* ── HERO ── */
-    .hero { padding: 7.5rem 0 3rem; position: relative; }
-
-    .terminal-bar {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 8px; padding: 0.4rem 1rem; margin-bottom: 1.5rem;
+    .hero { padding: 6rem 0 2rem; }
+    .hero-card {
+      background: var(--bg-card);
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--card-shadow);
+      padding: 2.5rem;
+      transition: all 0.2s ease;
     }
-    .terminal-bar .dots { display: flex; gap: 5px; }
-    .terminal-bar .dots span {
-      width: 8px; height: 8px; border-radius: 50%;
+    .hero-top {
+      display: flex; align-items: center; gap: 1.5rem;
+      margin-bottom: 1.25rem;
     }
-    .terminal-bar .dots span:nth-child(1) { background: var(--dot-red); opacity: 0.8; }
-    .terminal-bar .dots span:nth-child(2) { background: var(--dot-orange); opacity: 0.8; }
-    .terminal-bar .dots span:nth-child(3) { background: var(--dot-green); opacity: 0.8; }
-    .terminal-bar .term-text {
-      font-family: 'Fira Code', monospace; font-size: 0.78rem; color: var(--text-dim);
+    .hero-icon {
+      width: 72px; height: 72px;
+      background: var(--skill-db);
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--small-shadow);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; flex-shrink: 0;
     }
-    .terminal-bar .term-text .green { color: var(--green); }
-
-    .hero h1 {
-      font-size: 2.8rem; font-weight: 700; letter-spacing: -0.03em;
-      line-height: 1.15; color: var(--text-bright);
+    .hero-info h1 {
+      font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif;
+      font-size: 2.2rem; font-weight: 700; line-height: 1.15;
+      color: var(--text);
     }
-    .hero h1 .en {
-      display: block; font-family: 'Fira Code', monospace;
-      font-size: 1.2rem; font-weight: 400; color: var(--text-dim); margin-top: 0.3rem;
+    .hero-info .hero-title {
+      font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif;
+      font-size: 1rem; font-weight: 500; color: var(--text-sub);
+      margin-top: 0.3rem;
     }
-    .hero-subtitle {
-      font-size: 1rem; color: var(--text); font-weight: 400; margin-top: 1.25rem;
+    .hero-intro {
+      font-size: 0.94rem; color: var(--text-sub); line-height: 1.75;
+      margin-bottom: 1.75rem;
     }
     .hero-contacts {
-      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem;
+      display: flex; flex-wrap: wrap; gap: 0.6rem;
     }
     .hero-contacts a {
       display: inline-flex; align-items: center; gap: 0.4rem;
-      font-family: 'Fira Code', monospace; font-size: 0.78rem; font-weight: 500;
-      color: var(--text-dim); text-decoration: none;
-      padding: 0.4rem 0.85rem; border: 1px solid var(--border);
-      border-radius: 8px; background: var(--bg-card); transition: all 0.25s;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem; font-weight: 600;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border: var(--border-w) solid var(--border);
+      border-radius: 10px;
+      transition: all 0.15s ease;
     }
-    .hero-contacts a:hover {
-      border-color: var(--cyan); color: var(--cyan);
-      box-shadow: 0 0 12px rgba(88,166,255,0.1);
+    .hero-contacts a svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .hero-contacts a.btn-filled {
+      background: var(--text); color: var(--bg);
+      box-shadow: var(--small-shadow);
     }
-    .hero-contacts a svg { width: 14px; height: 14px; flex-shrink: 0; }
+    .hero-contacts a.btn-filled:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px var(--shadow);
+    }
+    .hero-contacts a.btn-velog {
+      background: #20C997; color: #fff;
+      border-color: var(--border);
+      box-shadow: var(--small-shadow);
+    }
+    .hero-contacts a.btn-velog:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px var(--shadow);
+    }
+    .hero-contacts a.btn-linkedin {
+      background: #0A66C2; color: #fff;
+      border-color: var(--border);
+      box-shadow: var(--small-shadow);
+    }
+    .hero-contacts a.btn-linkedin svg { fill: #fff; }
+    .hero-contacts a.btn-linkedin:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px var(--shadow);
+    }
+    .hero-contacts a.btn-outline {
+      background: var(--bg-card); color: var(--text);
+      box-shadow: var(--tag-shadow);
+    }
+    .hero-contacts a.btn-outline:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: var(--small-shadow);
+    }
 
     /* ── SECTIONS ── */
-    .section { padding: 3.5rem 0; }
-    .section-header {
-      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 2rem;
-    }
-    .section-header h2 {
-      font-family: 'Fira Code', monospace;
-      font-size: 1.1rem; font-weight: 600; color: var(--cyan);
-    }
-    .section-header h2::before { content: '# '; color: var(--text-muted); }
-    .section-header .career-badge {
-      font-family: 'Fira Code', monospace;
-      font-size: 0.72rem; font-weight: 500; color: var(--green);
-      background: var(--green-dim); border: 1px solid rgba(63,185,80,0.2);
-      padding: 0.2rem 0.6rem; border-radius: 100px;
-    }
-    .section-header::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .section { padding: 2rem 0; }
 
-    /* ── ABOUT ── */
-    .about-text {
-      font-size: 0.92rem; color: var(--text); line-height: 1.85;
+    /* ── ABOUT (inside hero) ── */
+    .hero-about {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 2px dashed var(--divider);
     }
-    .about-text + .about-text { margin-top: 0.75rem; }
+    .about-text {
+      font-size: 0.88rem; color: var(--text-sub); line-height: 1.85;
+    }
+    .about-text + .about-text { margin-top: 0.6rem; }
 
     /* ── SKILLS ── */
     .skills-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.75rem;
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
     }
     .skill-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 10px; padding: 1.1rem; transition: all 0.25s;
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      box-shadow: var(--card-shadow);
+      transition: all 0.15s ease;
     }
     .skill-card:hover {
-      border-color: var(--border-bright); box-shadow: var(--glow);
+      transform: translate(-2px, -2px);
+      box-shadow: var(--card-shadow-hover);
     }
-    .skill-card .skill-label {
-      font-family: 'Fira Code', monospace;
-      font-size: 0.68rem; font-weight: 500; text-transform: uppercase;
-      letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.55rem;
+    .skill-card.color-lang { background: var(--skill-lang); }
+    .skill-card.color-framework { background: var(--skill-framework); }
+    .skill-card.color-db { background: var(--skill-db); }
+    .skill-card.color-message { background: var(--skill-message); }
+    .skill-card.color-infra { background: var(--skill-infra); }
+    .skill-card.color-etc { background: var(--skill-etc); }
+
+    .skill-card-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--badge-text); margin-bottom: 0.65rem;
     }
-    .skill-card .skill-label::before { content: '// '; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
     .skill-tag {
       font-family: 'Fira Code', monospace;
-      font-size: 0.72rem; font-weight: 500;
-      color: var(--cyan); background: var(--cyan-dim);
-      border: 1px solid rgba(88,166,255,0.12);
-      padding: 0.25rem 0.55rem; border-radius: 5px;
+      font-size: 0.74rem; font-weight: 500;
+      color: var(--badge-text);
+      background: rgba(255,255,255,0.55);
+      border: 2px solid var(--border);
+      padding: 0.22rem 0.55rem; border-radius: 6px;
+      transition: all 0.1s ease;
+    }
+    [data-theme="dark"] .skill-tag {
+      background: rgba(0,0,0,0.25);
+      color: #f0f0f0;
+    }
+    .skill-tag:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: var(--tag-shadow);
     }
 
-    /* ── DIVIDER ── */
-    .divider { width: 100%; height: 1px; background: var(--border); }
-
-    /* ── COMPANY ── */
-    .company-block { position: relative; margin-bottom: 3rem; }
+    /* ── COMPANY BLOCK ── */
+    .company-block { margin-bottom: 1.5rem; }
     .company-block:last-child { margin-bottom: 0; }
+
+    .company-card {
+      background: var(--bg-card);
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--card-shadow);
+      padding: 2rem;
+      transition: all 0.2s ease;
+    }
+    .company-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--card-shadow-hover);
+    }
 
     .company-header {
       display: flex; align-items: flex-start; justify-content: space-between;
       gap: 1rem; flex-wrap: wrap; margin-bottom: 0.35rem;
     }
-    .company-name { font-size: 1.2rem; font-weight: 700; color: var(--text-bright); }
+    .company-name {
+      font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif;
+      font-size: 1.25rem; font-weight: 700; color: var(--text);
+    }
     .company-name a { color: inherit; text-decoration: none; transition: color 0.2s; }
-    .company-name a:hover { color: var(--cyan); }
+    .company-name a:hover { color: var(--accent); }
     .company-role {
       font-family: 'Fira Code', monospace;
-      font-size: 0.78rem; font-weight: 500; color: var(--green);
-      background: var(--green-dim); border: 1px solid rgba(63,185,80,0.15);
-      padding: 0.2rem 0.65rem; border-radius: 6px; white-space: nowrap;
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--badge-text);
+      background: var(--badge-bg);
+      border: 2px solid var(--border);
+      padding: 0.2rem 0.65rem; border-radius: 6px;
+      white-space: nowrap;
+      box-shadow: var(--tag-shadow);
     }
     .company-meta {
       font-family: 'Fira Code', monospace;
-      font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem;
+      font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.5rem;
     }
     .company-desc {
-      font-size: 0.88rem; color: var(--text); line-height: 1.7; margin-bottom: 1.25rem;
+      font-size: 0.88rem; color: var(--text-sub); line-height: 1.7; margin-bottom: 1.5rem;
+    }
+    .company-desc strong { color: var(--text); font-weight: 600; }
+
+    /* ── PROJECT TOGGLE ── */
+    .projects-toggle {
+      display: flex; align-items: center; gap: 0.5rem;
+      margin-bottom: 1rem; cursor: pointer;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--text-sub);
+      background: none; border: none;
+      padding: 0; transition: color 0.15s;
+    }
+    .projects-toggle:hover { color: var(--accent); }
+    .projects-toggle .toggle-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-card);
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem; font-weight: 700;
+      color: var(--text);
+      box-shadow: 1px 1px 0px var(--shadow);
+      transition: all 0.15s ease;
+    }
+    .projects-toggle:hover .toggle-icon {
+      transform: translate(-1px, -1px);
+      box-shadow: 2px 2px 0px var(--shadow);
+    }
+
+    .projects-wrapper {
+      transition: max-height 0.4s ease;
+      overflow: hidden;
+    }
+    .projects-wrapper.expanded {
+      max-height: none !important;
+      overflow: visible;
+    }
+    .projects-wrapper.collapsed {
+      max-height: 0 !important;
     }
 
     /* ── PROJECT CARD ── */
-    .project-card {
-      background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 10px; padding: 1.5rem; margin-bottom: 0.75rem;
-      transition: all 0.25s, background 0.35s ease; position: relative;
+    .project-item {
+      padding: 1.25rem 0;
     }
-    .project-card:hover {
-      border-color: var(--border-bright); box-shadow: var(--glow);
-      background: var(--bg-card-hover);
+    .project-item:last-child {
+      padding-bottom: 0.25rem;
     }
-    .project-card::before {
-      content: ''; position: absolute; left: 0; top: 1.2rem; bottom: 1.2rem;
-      width: 2px; background: var(--border); border-radius: 2px;
+    .project-item + .project-item {
+      border-top: 2px dashed var(--divider);
     }
-    .project-card:hover::before { background: var(--card-left-accent); }
 
     .project-title {
-      font-size: 0.98rem; font-weight: 700; color: var(--text-bright);
-      margin-bottom: 0.25rem; padding-left: 0;
+      font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif;
+      font-size: 0.98rem; font-weight: 700; color: var(--text);
+      margin-bottom: 0.25rem;
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem;
+    }
+    .blog-link {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.68rem; font-weight: 600;
+      color: var(--text); background: var(--skill-framework);
+      white-space: nowrap; flex-shrink: 0;
+      border: 2px solid var(--border);
+      padding: 0.15rem 0.6rem; border-radius: 6px;
+      text-decoration: none;
+      box-shadow: 2px 2px 0px var(--shadow);
+      transition: all 0.15s;
+    }
+    .blog-link:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 3px 3px 0px var(--shadow);
     }
     .project-subtitle {
       font-size: 0.82rem; color: var(--text-dim); margin-bottom: 0.85rem; line-height: 1.55;
     }
-    .project-subtitle a { color: var(--cyan); text-decoration: none; }
+    .project-subtitle a { color: var(--accent); text-decoration: none; font-weight: 500; }
     .project-subtitle a:hover { text-decoration: underline; }
 
     .project-details { list-style: none; padding: 0; }
     .project-details li {
       position: relative; padding-left: 1.1rem;
-      font-size: 0.82rem; color: var(--text); line-height: 1.65; margin-bottom: 0.4rem;
+      font-size: 0.82rem; color: var(--text-sub); line-height: 1.65; margin-bottom: 0.4rem;
     }
     .project-details li::before {
-      content: '▸'; position: absolute; left: 0; top: 0; color: var(--text-muted);
-      font-family: 'Fira Code', monospace; font-size: 0.7rem;
+      content: '\25B8'; position: absolute; left: 0; top: 0; color: var(--text-dim);
+      font-size: 0.7rem;
     }
-    .project-details li.highlight::before { color: var(--green); }
-    .project-details li strong { font-weight: 600; color: var(--text-bright); }
+    .project-details li.highlight::before { color: var(--accent); }
+    .project-details li strong { font-weight: 600; color: var(--text); }
 
     .context-label {
       font-family: 'Fira Code', monospace;
-      display: inline-block; font-size: 0.68rem; font-weight: 500;
-      color: var(--orange); letter-spacing: 0.03em; margin-right: 0.3rem;
+      display: inline-block; font-size: 0.68rem; font-weight: 600;
+      color: var(--accent); letter-spacing: 0.03em; margin-right: 0.3rem;
     }
-    .context-label::before { content: '['; color: var(--text-muted); }
-    .context-label::after { content: ']'; color: var(--text-muted); }
+    .context-label::before { content: '['; color: var(--text-dim); }
+    .context-label::after { content: ']'; color: var(--text-dim); }
 
-    .metric { font-weight: 600; color: var(--green); }
+    .metric { font-weight: 700; color: var(--accent); }
 
     .squad-label {
       font-family: 'Fira Code', monospace;
-      font-size: 0.76rem; font-weight: 500; color: var(--purple);
+      font-size: 0.76rem; font-weight: 600; color: var(--accent);
       margin-top: 0.6rem; margin-bottom: 0.3rem;
+    }
+
+    .domain-badge {
+      display: inline-block;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.65rem; font-weight: 600;
+      background: var(--skill-message);
+      color: var(--badge-text);
+      border: 2px solid var(--border);
+      padding: 0.12rem 0.45rem;
+      border-radius: 5px;
+      margin-bottom: 0.5rem;
     }
 
     .project-meta {
       display: flex; flex-wrap: wrap; gap: 0.5rem;
-      margin-top: 0.9rem; padding-top: 0.8rem; border-top: 1px solid var(--border);
+      margin-top: 0.75rem;
     }
     .project-meta-item {
       font-size: 0.75rem; color: var(--text-dim);
     }
-    .project-meta-item strong { font-weight: 600; color: var(--text); }
-    .project-meta-item a { color: var(--cyan); text-decoration: none; font-weight: 500; }
-    .project-meta-item a:hover { text-decoration: underline; }
+    .project-meta-item strong { font-weight: 600; color: var(--text-sub); }
 
-    .tech-stack { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.65rem; }
-    .tech-stack .skill-tag {
-      font-size: 0.68rem; padding: 0.18rem 0.45rem;
-      color: var(--text-dim); background: var(--bg-elevated);
-      border-color: var(--border);
+    .tech-stack { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.65rem; }
+    .tech-stack .tech-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.68rem; font-weight: 500;
+      color: var(--text-sub);
+      background: var(--bg);
+      border: 2px solid var(--border);
+      padding: 0.15rem 0.45rem; border-radius: 5px;
     }
 
     /* ── EDUCATION ── */
+    .edu-card {
+      background: var(--bg-card);
+      border: var(--border-w) solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--card-shadow);
+      padding: 2rem;
+      transition: all 0.2s ease;
+    }
+    .edu-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--card-shadow-hover);
+    }
     .edu-item {
       display: flex; gap: 1.25rem; align-items: flex-start; padding: 0.85rem 0;
     }
-    .edu-item + .edu-item { border-top: 1px solid var(--border); }
+    .edu-item + .edu-item { border-top: 2px dashed var(--divider); }
     .edu-year {
       font-family: 'Fira Code', monospace; font-size: 0.75rem;
-      color: var(--text-muted); white-space: nowrap; padding-top: 0.1rem; min-width: 130px;
+      color: var(--text-dim); white-space: nowrap; padding-top: 0.1rem; min-width: 130px;
     }
-    .edu-school { font-size: 0.9rem; font-weight: 600; color: var(--text-bright); }
+    .edu-school {
+      font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif;
+      font-size: 0.92rem; font-weight: 700; color: var(--text);
+    }
     .edu-major { font-size: 0.8rem; color: var(--text-dim); }
 
-    /* ── ACTIVITY ── */
-    .activity-list { display: flex; flex-direction: column; gap: 0.4rem; }
+    .edu-sub-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem; font-weight: 700;
+      color: var(--text);
+      margin-top: 1.5rem; margin-bottom: 0.5rem;
+      padding-top: 1rem;
+      border-top: 2px dashed var(--divider);
+    }
+
     .activity-item {
       display: flex; gap: 1rem; align-items: flex-start;
-      padding: 0.75rem 1rem; background: var(--bg-card);
-      border: 1px solid var(--border); border-radius: 8px; transition: all 0.2s;
+      padding: 0.7rem 0;
     }
-    .activity-item:hover { border-color: var(--border-bright); box-shadow: var(--glow); }
+    .activity-item + .activity-item { border-top: 1px solid var(--divider); }
     .activity-date {
       font-family: 'Fira Code', monospace; font-size: 0.72rem;
-      color: var(--text-muted); white-space: nowrap; padding-top: 0.1rem; min-width: 110px;
+      color: var(--text-dim); white-space: nowrap; padding-top: 0.15rem; min-width: 110px;
     }
     .activity-type {
       font-family: 'Fira Code', monospace;
-      font-size: 0.65rem; font-weight: 500; padding: 0.15rem 0.45rem;
-      border-radius: 4px; white-space: nowrap;
-      background: var(--bg-elevated); color: var(--text-muted); border: 1px solid var(--border);
+      font-size: 0.65rem; font-weight: 600; padding: 0.15rem 0.45rem;
+      border-radius: 5px; white-space: nowrap;
+      background: var(--skill-infra); color: var(--badge-text);
+      border: 2px solid var(--border);
     }
-    .activity-content { flex: 1; font-size: 0.82rem; color: var(--text); }
-    .activity-content strong { color: var(--text-bright); font-weight: 600; }
-    .activity-content a { color: var(--cyan); text-decoration: none; font-weight: 500; }
+    .activity-content { flex: 1; font-size: 0.82rem; color: var(--text-sub); }
+    .activity-content strong { color: var(--text); font-weight: 600; }
+    .activity-content a { color: var(--accent); text-decoration: none; font-weight: 500; }
     .activity-content a:hover { text-decoration: underline; }
 
     /* ── FOOTER ── */
     footer {
-      padding: 2.5rem 0; border-top: 1px solid var(--border); text-align: center;
+      padding: 2.5rem 0; text-align: center;
     }
-    footer p {
+    .footer-badge {
+      display: inline-block;
       font-family: 'Fira Code', monospace;
-      font-size: 0.72rem; color: var(--text-muted);
+      font-size: 0.72rem; font-weight: 600;
+      background: var(--badge-bg); color: var(--badge-text);
+      border: 2px solid var(--border);
+      padding: 0.3rem 0.8rem;
+      border-radius: 8px;
+      box-shadow: var(--tag-shadow);
     }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
       .container { padding: 0 1.25rem; }
-      .hero { padding: 6rem 0 2.5rem; }
-      .hero h1 { font-size: 2rem; }
-      nav .nav-links a { padding: 0.35rem 0.4rem; font-size: 0.68rem; }
-      .company-header { flex-direction: column; gap: 0.35rem; }
+      .hero { padding: 5.5rem 0 2rem; }
+      .hero-card { padding: 1.5rem; }
+      .hero-top { flex-direction: column; gap: 0.75rem; }
+      .hero-info h1 { font-size: 1.75rem; }
+      .hero-contacts { gap: 0.4rem; }
+      .hero-contacts a { font-size: 0.75rem; padding: 0.4rem 0.75rem; }
+      .nav-links a { padding: 0.3rem 0.45rem; font-size: 0.72rem; }
       .skills-grid { grid-template-columns: 1fr; }
-      .edu-item, .activity-item { flex-direction: column; gap: 0.25rem; }
-      .edu-year, .activity-date { min-width: unset; }
+      .company-header { flex-direction: column; gap: 0.35rem; }
+      .company-card { padding: 1.5rem; }
+      .hero-about { margin-top: 1rem; padding-top: 1rem; }
+      .edu-card { padding: 1.5rem; }
+      .edu-item { flex-direction: column; gap: 0.25rem; }
+      .edu-year { min-width: unset; }
+      .activity-item { flex-direction: column; gap: 0.25rem; }
+      .activity-date { min-width: unset; }
     }
-
-    /* ── LIGHT THEME OVERRIDES ── */
-    [data-theme="light"] .project-card { box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-    [data-theme="light"] .project-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-    [data-theme="light"] .skill-card { box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-    [data-theme="light"] .skill-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-    [data-theme="light"] .skill-tag { color: var(--text-bright); border-color: rgba(37,99,235,0.2); }
-    [data-theme="light"] .tech-stack .skill-tag { color: var(--text-dim); border-color: var(--border); }
-    [data-theme="light"] .activity-item { box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
-    [data-theme="light"] nav { box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
-
-    /* ── THEME TOGGLE ── */
-    .theme-toggle {
-      display: flex; align-items: center; justify-content: center;
-      width: 34px; height: 34px; border: 1px solid var(--border);
-      border-radius: 8px; background: var(--bg-card); cursor: pointer;
-      color: var(--text-dim); transition: all 0.25s; margin-left: 0.5rem;
-      flex-shrink: 0;
-    }
-    .theme-toggle:hover { color: var(--cyan); border-color: var(--cyan); }
-    .theme-toggle svg { width: 16px; height: 16px; }
-    .theme-toggle .icon-sun { display: none; }
-    .theme-toggle .icon-moon { display: block; }
-    [data-theme="light"] .theme-toggle .icon-sun { display: block; }
-    [data-theme="light"] .theme-toggle .icon-moon { display: none; }
-
-    /* ── ANIMATIONS ── */
-    .fade-up {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-<nav>
+<nav id="nav">
   <div class="nav-inner">
-    <span class="nav-name">rimi-dev</span>
+    <a class="nav-name" href="#">김예림 <span>&nearr;</span></a>
     <div class="nav-links">
-      <a href="#about">about</a>
-      <a href="#skills">skills</a>
-      <a href="#career">career</a>
-      <a href="#education">edu</a>
+      <a href="#top">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#career">Career</a>
+      <a href="#education">Contact</a>
       <button class="theme-toggle" id="theme-toggle" aria-label="테마 전환">
         <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -438,347 +627,414 @@
 <div class="container">
 
   <!-- HERO -->
-  <section class="hero" id="about">
-    <div class="terminal-bar">
-      <div class="dots"><span></span><span></span><span></span></div>
-      <span class="term-text"><span class="green">rimi</span>@backend ~ $ cat career.yml — <span id="total-career"></span></span>
-    </div>
-    <h1>
-      김예림
-      <span class="en">Rimi Kim</span>
-    </h1>
-    <p class="hero-subtitle">
-      다양한 언어와 프레임워크 경험을 바탕으로 안정적이고 확장 가능한 시스템을 설계하는 <span id="career-year"></span>년차 백엔드 엔지니어
-    </p>
-    <div class="hero-contacts">
-      <a href="mailto:yerimi@kakao.com">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        yerimi@kakao.com
-      </a>
-      <a href="https://velog.io/@rimi" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-        Blog
-      </a>
-      <a href="https://github.com/rimi-dev" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12 24 5.37 18.63 0 12 0z"/></svg>
-        GitHub
-      </a>
-      <a href="https://www.linkedin.com/in/rimi-dev/" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        LinkedIn
-      </a>
+  <section class="hero fade-up" id="top">
+    <div class="hero-card">
+      <div class="hero-top">
+        <div class="hero-icon">&#x1F469;&#x200D;&#x1F4BB;</div>
+        <div class="hero-info">
+          <h1>김예림</h1>
+          <div class="hero-title">Backend Engineer &middot; 총 경력 <span id="total-career"></span></div>
+        </div>
+      </div>
+      <p class="hero-intro">다양한 언어와 프레임워크 경험을 바탕으로 안정적이고 확장 가능한 시스템을 설계하는 백엔드 엔지니어입니다.</p>
+      <div class="hero-contacts">
+        <a href="https://github.com/rimi-dev" target="_blank" rel="noopener" class="btn-filled">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12 24 5.37 18.63 0 12 0z"/></svg>
+          GitHub &nearr;
+        </a>
+        <a href="https://velog.io/@rimi" target="_blank" rel="noopener" class="btn-velog">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          Blog &nearr;
+        </a>
+        <a href="mailto:yerimi@kakao.com" class="btn-outline">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email
+        </a>
+        <a href="https://www.linkedin.com/in/rimi-dev/" target="_blank" rel="noopener" class="btn-linkedin">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <div class="hero-about">
+        <p class="about-text">레거시 시스템을 현대적 아키텍처로 전환한 경험이 다수 있으며, Monolith &#8596; MSA 양방향 전환, 언어&#183;프레임워크 마이그레이션, 데이터베이스 이관 등 시스템 진화의 전 과정을 주도적으로 수행해왔습니다.</p>
+        <p class="about-text">패션 커머스(무신사), 헬스케어(비브로스), 온디맨드 매칭(마켓디자이너스) 등 다양한 도메인에서 대규모 트래픽 환경의 서비스를 설계&#183;운영한 경험을 바탕으로, 비즈니스 요구사항을 기술적으로 풀어내는 데 강점을 가지고 있습니다.</p>
+        <p class="about-text">팀 내에서 기술 의사결정에 적극적으로 참여하며, 코드 리뷰와 기술 문서화를 통해 팀 전체의 개발 품질을 높이는 것을 중요하게 생각합니다.</p>
+      </div>
     </div>
   </section>
-
-  <!-- ABOUT -->
-  <section class="section fade-up">
-    <p class="about-text">레거시 시스템을 현대적 아키텍처로 전환한 경험이 다수 있으며, Monolith ↔ MSA 양방향 전환, 언어·프레임워크 마이그레이션, 데이터베이스 이관 등 시스템 진화의 전 과정을 주도적으로 수행해왔습니다.</p>
-    <p class="about-text">패션 커머스(무신사), 헬스케어(비브로스), 온디맨드 매칭(마켓디자이너스) 등 다양한 도메인에서 대규모 트래픽 환경의 서비스를 설계·운영한 경험을 바탕으로, 비즈니스 요구사항을 기술적으로 풀어내는 데 강점을 가지고 있습니다.</p>
-    <p class="about-text">팀 내에서 기술 의사결정에 적극적으로 참여하며, 코드 리뷰와 기술 문서화를 통해 팀 전체의 개발 품질을 높이는 것을 중요하게 생각합니다.</p>
-  </section>
-
-  <div class="divider"></div>
 
   <!-- SKILLS -->
   <section class="section fade-up" id="skills">
-    <div class="section-header"><h2>Core Skills</h2><div></div></div>
+    <div class="section-label">SKILLS</div>
     <div class="skills-grid">
-      <div class="skill-card"><div class="skill-label">Language</div><div class="skill-tags"><span class="skill-tag">TypeScript</span><span class="skill-tag">Kotlin</span><span class="skill-tag">Python</span></div></div>
-      <div class="skill-card"><div class="skill-label">Backend Framework</div><div class="skill-tags"><span class="skill-tag">NestJS</span><span class="skill-tag">Spring Boot</span><span class="skill-tag">Django/DRF</span></div></div>
-      <div class="skill-card"><div class="skill-label">Database</div><div class="skill-tags"><span class="skill-tag">MongoDB</span><span class="skill-tag">MySQL</span><span class="skill-tag">MS-SQL</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">Redis</span></div></div>
-      <div class="skill-card"><div class="skill-label">Message / Protocol</div><div class="skill-tags"><span class="skill-tag">Kafka</span><span class="skill-tag">SQS</span><span class="skill-tag">MQTT</span><span class="skill-tag">WebSocket</span><span class="skill-tag">gRPC</span></div></div>
-      <div class="skill-card"><div class="skill-label">Infra / DevOps</div><div class="skill-tags"><span class="skill-tag">AWS ECS</span><span class="skill-tag">EKS</span><span class="skill-tag">Lambda</span><span class="skill-tag">Jenkins</span><span class="skill-tag">GitLab CI/CD</span><span class="skill-tag">ArgoCD</span></div></div>
-      <div class="skill-card"><div class="skill-label">Etc.</div><div class="skill-tags"><span class="skill-tag">FCM</span><span class="skill-tag">MikroORM</span><span class="skill-tag">TypeORM</span></div></div>
+      <div class="skill-card color-lang">
+        <div class="skill-card-label">Language</div>
+        <div class="skill-tags">
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">Kotlin</span>
+          <span class="skill-tag">Python</span>
+        </div>
+      </div>
+      <div class="skill-card color-framework">
+        <div class="skill-card-label">Backend Framework</div>
+        <div class="skill-tags">
+          <span class="skill-tag">NestJS</span>
+          <span class="skill-tag">Spring Boot</span>
+          <span class="skill-tag">Django/DRF</span>
+        </div>
+      </div>
+      <div class="skill-card color-db">
+        <div class="skill-card-label">Database</div>
+        <div class="skill-tags">
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">MySQL</span>
+          <span class="skill-tag">MS-SQL</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">Redis</span>
+        </div>
+      </div>
+      <div class="skill-card color-message">
+        <div class="skill-card-label">Message / Protocol</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Kafka</span>
+          <span class="skill-tag">SQS</span>
+          <span class="skill-tag">MQTT</span>
+          <span class="skill-tag">WebSocket</span>
+          <span class="skill-tag">gRPC</span>
+        </div>
+      </div>
+      <div class="skill-card color-infra">
+        <div class="skill-card-label">Infra / DevOps</div>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS ECS</span>
+          <span class="skill-tag">EKS</span>
+          <span class="skill-tag">Lambda</span>
+          <span class="skill-tag">Jenkins</span>
+          <span class="skill-tag">GitLab CI/CD</span>
+          <span class="skill-tag">GitHub Action</span>
+          <span class="skill-tag">ArgoCD</span>
+        </div>
+      </div>
+      <div class="skill-card color-etc">
+        <div class="skill-card-label">Etc.</div>
+        <div class="skill-tags">
+          <span class="skill-tag">FCM</span>
+          <span class="skill-tag">MikroORM</span>
+          <span class="skill-tag">TypeORM</span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
   <!-- CAREER -->
   <section class="section" id="career">
-    <div class="section-header">
-      <h2>Career</h2>
-      <span class="career-badge"><span id="total-career-2"></span></span>
-      <div></div>
+    <div class="section-label-row">
+      <div class="section-label">CAREER</div>
+      <span class="career-total-badge"><span id="total-career-2"></span></span>
     </div>
 
     <!-- 비브로스 -->
     <div class="company-block fade-up">
-      <div class="company-header">
-        <div class="company-name"><a href="https://ddocdoc.com/" target="_blank" rel="noopener">비브로스</a></div>
-        <span class="company-role">Backend Engineer</span>
-      </div>
-      <div class="company-meta">2025.01 ~ 현재 · <span id="vibros-period"></span> · 헬스케어 서비스 "똑닥" 개발 스타트업</div>
-      <p class="company-desc">
-        백엔드팀 접수/예약 스쿼드 소속으로,<br>
-        MAU 150만 규모 서비스의 예약 시스템 핵심 기능 개편 및 유지보수와
-        신규 서비스 백엔드 개발을 담당하고 있습니다.
-      </p>
+      <div class="company-card">
+        <div class="company-header">
+          <div class="company-name"><a href="https://ddocdoc.com/" target="_blank" rel="noopener">비브로스</a></div>
+          <span class="company-role">Backend Engineer</span>
+        </div>
+        <div class="company-meta">2025.01 ~ 현재 &middot; <span id="vibros-period"></span> &middot; 헬스케어 서비스 "똑닥" 개발 스타트업</div>
+        <p class="company-desc">백엔드팀 접수/예약 스쿼드 소속으로, MAU 150만 규모 서비스의 예약 시스템 핵심 기능 개편과 신규 서비스 개발을 담당하고 있습니다.</p>
 
-      <div class="project-card">
-        <div class="project-title">병원 상담톡 기능 신규 개발</div>
-        <div class="project-subtitle">병원 ↔ 유저 간 1:1 실시간 채팅 서비스의 백엔드 설계 및 개발을 담당</div>
-        <ul class="project-details">
-          <li>WebSocket(STOMP) 기반 실시간 통신 계층을 설계하고, Redis Pub/Sub을 활용한 분산 메시지 브로커를 구현하여 다중 인스턴스 환경에서도 메시지 유실 없이 동작하는 채팅 시스템을 구축</li>
-          <li>자동응답 룰 엔진과 미답변 메시지 리마인드 배치를 추가하여, 병원 측 응대율 향상에 기여</li>
-          <li>Kafka Consumer를 통해 타 도메인 이벤트(회원 탈퇴, 병원 정보 변경 등)를 수신하여 채팅방 데이터를 자동 동기화하는 구조를 구현, 도메인 간 정합성을 보장</li>
-        </ul>
-        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;백엔드 설계 및 구현 주담당, 프론트·앱 개발자 2명과 협업</span></div>
-        <div class="tech-stack"><span class="skill-tag">Kotlin 2.3.0</span><span class="skill-tag">Spring Boot 4.0.2</span><span class="skill-tag">MongoDB</span><span class="skill-tag">Redis</span><span class="skill-tag">Kafka</span></div>
-      </div>
+        <button class="projects-toggle" onclick="toggleProjects(this)">
+          <span class="toggle-icon">&minus;</span>
+          <span class="toggle-text">프로젝트 접기</span>
+        </button>
 
-      <div class="project-card">
-        <div class="project-title">예약 스케줄러 전면 개편</div>
-        <div class="project-subtitle">기존 예약 스케줄러의 구조적 한계를 해소하기 위한 시스템 재설계 및 개발을 주도</div>
-        <ul class="project-details">
-          <li><span class="context-label">배경</span>진료항목별 상이한 예약 시간 간격 설정 불가, 운영자 UX 복잡도 등 병원 측 불만이 지속적으로 접수되어 전면 개편 결정</li>
-          <li>진료항목별로 예약 시간 간격을 개별 설정할 수 있도록 구조를 변경하여, 병원이 시간 공백 없이 유연하게 예약을 운영할 수 있도록 개선</li>
-          <li>예약 스케줄러의 데이터 모델(MongoDB Collection)을 재설계하고, 예약 카운팅 구조를 변경하여 동시성 이슈(중복 예약)를 해소</li>
-          <li>Redis 기반 분산 락(Redlock)을 도입하여 동시 예약 요청 시 발생하는 Race Condition을 근본적으로 예방</li>
-          <li>기존 대비 디버깅 난이도를 낮추는 구조로 개선하여 장애 대응 시간 단축</li>
-          <li class="highlight"><strong>성과</strong> &nbsp;월 2~3회 발생하던 중복 예약 이슈를 <span class="metric">사실상 0건</span>으로 해소</li>
-        </ul>
-        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;스케줄러 도메인 설계 및 개발 주담당, PM·디자이너와 요구사항 협의부터 참여</span><span class="project-meta-item"><strong>관련 글</strong> &nbsp;<a href="https://boostbrothers.github.io/2026-03-24-reservation-lego" target="_blank" rel="noopener">사내 기술블로그</a></span></div>
-        <div class="tech-stack"><span class="skill-tag">NestJS 10.3</span><span class="skill-tag">TypeScript</span><span class="skill-tag">MikroORM</span><span class="skill-tag">MongoDB</span><span class="skill-tag">Redis</span><span class="skill-tag">Kafka</span></div>
-      </div>
+        <div class="projects-wrapper">
+          <div class="project-item">
+            <div class="project-title">병원 상담톡 기능 신규 개발</div>
+            <div class="project-subtitle">병원 &#8596; 유저 간 1:1 실시간 채팅 서비스의 백엔드 설계 및 개발을 단독 담당</div>
+            <ul class="project-details">
+              <li>WebSocket(STOMP) 기반 실시간 통신 계층을 설계하고, Redis Pub/Sub을 활용한 분산 메시지 브로커를 구현하여 다중 인스턴스 환경에서도 메시지 유실 없이 동작하는 채팅 시스템을 구축</li>
+              <li>자동응답 룰 엔진과 미답변 메시지 리마인드 배치를 추가하여, 병원 측 응대율 향상에 기여</li>
+              <li>Kafka Consumer를 통해 타 도메인 이벤트(회원 탈퇴, 병원 정보 변경 등)를 수신하여 채팅방 데이터를 자동 동기화하는 구조를 구현, 도메인 간 정합성을 보장</li>
+            </ul>
+            <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;백엔드 설계 및 구현 전담 (1인), 프론트&#183;앱 개발자 2명과 협업</span></div>
+            <div class="tech-stack"><span class="tech-tag">Kotlin 2.3.0</span><span class="tech-tag">Spring Boot 4.0.2</span><span class="tech-tag">MongoDB</span><span class="tech-tag">Redis</span><span class="tech-tag">Kafka</span></div>
+          </div>
 
-      <div class="project-card">
-        <div class="project-title">양방향 예약 시스템 구축</div>
-        <div class="project-subtitle">병원 차트 프로그램 ↔ 똑닥 시스템 간 실시간 양방향 데이터 동기화 구현</div>
-        <ul class="project-details">
-          <li><span class="context-label">배경</span>기존에는 차트 프로그램이 HTTP Polling 방식으로 단방향 통신만 가능하여 예약 상태 불일치 문제가 발생</li>
-          <li>차트 프로그램 ↔ 똑닥 에이전트 간 Socket 통신, 똑닥 에이전트 ↔ 똑닥 백엔드 간 MQTT 프로토콜을 적용하여 양방향 실시간 동기화 아키텍처를 설계</li>
-          <li>현장 예약 신청 → 똑닥 연동 처리 → 알림톡 자동 발송까지의 전체 플로우를 설계 및 구현</li>
-        </ul>
-        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;백엔드 구현 담당</span></div>
-        <div class="tech-stack"><span class="skill-tag">NestJS 10.3</span><span class="skill-tag">MikroORM</span><span class="skill-tag">MongoDB</span><span class="skill-tag">Redis</span><span class="skill-tag">MQTT</span></div>
+          <div class="project-item">
+            <div class="project-title"><span>예약 스케줄러 전면 개편</span><a href="https://boostbrothers.github.io/2026-03-24-reservation-lego" target="_blank" rel="noopener" class="blog-link">기술블로그 &nearr;</a></div>
+            <div class="project-subtitle">기존 예약 스케줄러의 구조적 한계를 해소하기 위한 시스템 재설계 및 개발을 주도</div>
+            <ul class="project-details">
+              <li><span class="context-label">배경</span>진료항목별 상이한 예약 시간 간격 설정 불가, 운영자 UX 복잡도 등 병원 측 불만이 지속적으로 접수되어 전면 개편 결정</li>
+              <li>진료항목별로 예약 시간 간격을 개별 설정할 수 있도록 구조를 변경하여, 병원이 시간 공백 없이 유연하게 예약을 운영할 수 있도록 개선</li>
+              <li>예약 스케줄러의 데이터 모델(MongoDB Collection)을 재설계하고, 예약 카운팅 구조를 변경하여 동시성 이슈(중복 예약)를 해소</li>
+              <li>Redis 기반 분산 락(Redlock)을 도입하여 동시 예약 요청 시 발생하는 Race Condition을 근본적으로 예방</li>
+              <li>기존 대비 디버깅 난이도를 낮추는 구조로 개선하여 장애 대응 시간 단축</li>
+              <li class="highlight"><strong>성과</strong> &nbsp;월 2~3회 발생하던 중복 예약 이슈를 <span class="metric">사실상 0건</span>으로 해소</li>
+            </ul>
+            <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;스케줄러 도메인 설계 및 개발 주담당, PM&#183;디자이너와 요구사항 협의부터 참여</span></div>
+            <div class="tech-stack"><span class="tech-tag">NestJS 10.3</span><span class="tech-tag">TypeScript</span><span class="tech-tag">MikroORM</span><span class="tech-tag">MongoDB</span><span class="tech-tag">Redis</span><span class="tech-tag">Kafka</span></div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-title">양방향 예약 시스템 구축</div>
+            <div class="project-subtitle">병원 차트 프로그램 &#8596; 똑닥 시스템 간 실시간 양방향 데이터 동기화 구현</div>
+            <ul class="project-details">
+              <li><span class="context-label">배경</span>기존에는 차트 프로그램이 HTTP Polling 방식으로 단방향 통신만 가능하여 예약 상태 불일치 문제가 발생</li>
+              <li>차트 프로그램 &#8596; 에이전트 간 Socket 통신, 에이전트 &#8596; 똑닥 간 MQTT 프로토콜을 적용하여 양방향 실시간 동기화 아키텍처를 설계</li>
+              <li>현장 예약 신청 &#8594; 똑닥 연동 처리 &#8594; 알림톡 자동 발송까지의 전체 플로우를 설계 및 구현</li>
+            </ul>
+            <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;아키텍처 설계 참여 및 백엔드 구현 담당</span></div>
+            <div class="tech-stack"><span class="tech-tag">NestJS 10.3</span><span class="tech-tag">MikroORM</span><span class="tech-tag">MongoDB</span><span class="tech-tag">Redis</span><span class="tech-tag">MQTT</span></div>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- 무신사 -->
     <div class="company-block fade-up">
-      <div class="company-header">
-        <div class="company-name"><a href="https://www.musinsa.com/" target="_blank" rel="noopener">무신사</a></div>
-        <span class="company-role">Backend Engineer</span>
-      </div>
-      <div class="company-meta">2021.09 ~ 2024.03 · 2년 7개월 · 온라인 패션 커머스 유니콘 기업</div>
-      <p class="company-desc">신사업 개발부서 소속으로 신규 서비스 런칭부터 성장 단계까지의 백엔드 개발을 담당했습니다.</p>
+      <div class="company-card">
+        <div class="company-header">
+          <div class="company-name"><a href="https://www.musinsa.com/" target="_blank" rel="noopener">무신사</a></div>
+          <span class="company-role">Backend Engineer</span>
+        </div>
+        <div class="company-meta">2021.09 ~ 2024.03 &middot; 2년 7개월 &middot; 온라인 패션 커머스 유니콘 기업</div>
+        <p class="company-desc">신사업 개발부서 소속으로 신규 서비스 런칭부터 성장 단계까지의 백엔드 개발을 담당했습니다.</p>
 
-      <div class="project-card">
-        <div class="project-title">액티베이션 · 콘텐츠 스쿼드 — 첫 구매율 30% 증가 기여</div>
-        <div class="project-subtitle">2개 스쿼드에 동시 소속되어 유저 활성화 및 콘텐츠 시스템 전반의 개선을 수행</div>
-        <div class="squad-label">[액티베이션 스쿼드]</div>
-        <ul class="project-details">
-          <li>첫 구매 / 재구매 유저 세그먼트별 맞춤 이벤트 기획전 노출 로직을 개발하고, 회원가입 직후 첫 구매 유도 퍼널을 구현</li>
-          <li class="highlight">A/B 테스트 기반 노출 전략 적용으로 <span class="metric">첫 구매 전환율 30% 증가</span>에 기여</li>
-        </ul>
-        <div class="squad-label">[콘텐츠 스쿼드]</div>
-        <ul class="project-details">
-          <li>CMS(Content Management System) 도메인의 운영 편의 기능 추가 및 전시 시스템 성능 개선</li>
-          <li class="highlight">전시/CMS 서비스의 캐싱 구조를 재설계하고, TypeORM 내 slow query를 분석·최적화하여 <span class="metric">관련 API latency 50% 이상 감소</span></li>
-          <li>불필요한 DB connection pool 점유 문제를 진단하고 해소하여 DB 안정성 향상</li>
-        </ul>
-        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;두 스쿼드의 백엔드 전담 개발자로 참여, 각 스쿼드 PM·프론트 개발자와 협업</span></div>
-        <div class="tech-stack"><span class="skill-tag">NestJS 9.0</span><span class="skill-tag">TypeScript</span><span class="skill-tag">Redis</span></div>
-      </div>
+        <button class="projects-toggle" onclick="toggleProjects(this)">
+          <span class="toggle-icon">&minus;</span>
+          <span class="toggle-text">프로젝트 접기</span>
+        </button>
 
-      <div class="project-card">
-        <div class="project-title">모바일 웹 오픈 및 앱 UI 리뉴얼</div>
-        <div class="project-subtitle">콘텐츠 중심 커머스로의 사업 전환에 따른 플랫폼 리뉴얼 프로젝트</div>
-        <ul class="project-details">
-          <li>전시 시스템 DB를 재설계하고, CMS 도메인 서비스의 데이터 모델 설계 및 API를 신규 구축</li>
-          <li>관련 배치 프로세스와 간이 어드민 페이지를 개발하여 운영 효율성 확보</li>
-          <li>NestJS · TypeORM 버전업을 수행하고, 배포 파이프라인을 GitLab CI → Jenkins로 전환하여 배포 안정성 및 속도 개선</li>
-          <li class="highlight">불필요한 인프라 리소스(미사용 ECS Task, 과잉 프로비저닝 등)를 정리하여 <span class="metric">월 인프라 비용 약 55% 절감</span> (9,000만 원 → 4,000만 원대)</li>
-        </ul>
-        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;전시·CMS 백엔드 설계 및 개발 주담당, 인프라 개선은 DevOps 엔지니어와 협업</span></div>
-        <div class="tech-stack"><span class="skill-tag">NestJS 9.0</span><span class="skill-tag">Redis</span><span class="skill-tag">SQS</span><span class="skill-tag">ECS</span><span class="skill-tag">Jenkins</span></div>
-      </div>
+        <div class="projects-wrapper">
+          <div class="project-item">
+            <div class="project-title">액티베이션 &#183; 콘텐츠 스쿼드 &#8212; 첫 구매율 30% 증가 기여</div>
+            <div class="project-subtitle">2개 스쿼드에 동시 소속되어 유저 활성화 및 콘텐츠 시스템 전반의 개선을 수행</div>
+            <div class="squad-label">[액티베이션 스쿼드]</div>
+            <ul class="project-details">
+              <li>첫 구매 / 재구매 유저 세그먼트별 맞춤 이벤트 기획전 노출 로직을 개발하고, 회원가입 직후 첫 구매 유도 퍼널을 구현</li>
+              <li class="highlight">A/B 테스트 기반 노출 전략 적용으로 <span class="metric">첫 구매 전환율 30% 증가</span>에 기여</li>
+            </ul>
+            <div class="squad-label">[콘텐츠 스쿼드]</div>
+            <ul class="project-details">
+              <li>CMS(Content Management System) 도메인의 운영 편의 기능 추가 및 전시 시스템 성능 개선</li>
+              <li class="highlight">전시/CMS 서비스의 캐싱 구조를 재설계하고, TypeORM 내 slow query를 분석&#183;최적화하여 <span class="metric">관련 API latency 50% 이상 감소</span></li>
+              <li>불필요한 DB connection pool 점유 문제를 진단하고 해소하여 DB 안정성 향상</li>
+            </ul>
+            <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;두 스쿼드의 백엔드 전담 개발자로 참여, 각 스쿼드 PM&#183;프론트 개발자와 협업</span></div>
+            <div class="tech-stack"><span class="tech-tag">NestJS 9.0</span><span class="tech-tag">TypeScript</span><span class="tech-tag">Redis</span></div>
+          </div>
 
-      <div class="project-card">
-        <div class="project-title">레이지나잇 서비스 오픈 런칭</div>
-        <div class="project-subtitle">무신사 신사업 3545 여성 패션 커머스 "레이지나잇" 오픈 런칭 · <a href="https://www.musinsa.com/cms/news/view/764" target="_blank" rel="noopener">관련 기사</a></div>
-        <ul class="project-details">
-          <li class="highlight">팀 빌딩 시점부터 합류하여 <span class="metric">7개월 만에 서비스 오픈 런칭</span>을 달성, 런칭 초기 <span class="metric">MAU 약 40만</span> 규모의 서비스로 성장</li>
-          <li>백엔드 플랫폼 파트(Node.js) 소속으로, 전시 · 공통 영역(브랜드, 카테고리, 은행, 국가, 택배사, 캘린더 등) · 판매업체 정보 · CS 도메인의 데이터베이스 설계 및 API 개발을 담당</li>
-          <li>도메인 간 메타데이터 동기화를 위한 SQS 기반 이벤트 파이프라인을 설계·도입</li>
-          <li>클라이언트용 API에 Redis 캐싱 레이어를 도입하여 응답 속도 개선 및 DB 부하 분산</li>
-          <li>GitLab CI를 활용한 ECS 배포 파이프라인을 구축하여 자동화된 배포 환경을 마련</li>
-        </ul>
-        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;전시·공통·CS 도메인 백엔드 전담 (런칭 준비 플랫폼 파트 4명 중 1인 → 런칭 후 8명 중 1인), 결제 파트(Java)와 gRPC 통신 인터페이스 협의</span></div>
-        <div class="tech-stack"><span class="skill-tag">NestJS 8.0</span><span class="skill-tag">gRPC</span><span class="skill-tag">Redis</span><span class="skill-tag">SQS</span><span class="skill-tag">ECS</span><span class="skill-tag">GitLab CI/CD</span></div>
+          <div class="project-item">
+            <div class="project-title">모바일 웹 오픈 및 앱 UI 리뉴얼</div>
+            <div class="project-subtitle">콘텐츠 중심 커머스로의 사업 전환에 따른 플랫폼 리뉴얼 프로젝트</div>
+            <ul class="project-details">
+              <li>전시 시스템 DB를 재설계하고, CMS 도메인 서비스의 데이터 모델 설계 및 API를 신규 구축</li>
+              <li>관련 배치 프로세스와 간이 어드민 페이지를 개발하여 운영 효율성 확보</li>
+              <li>NestJS &#183; TypeORM 버전업을 수행하고, 배포 파이프라인을 GitLab CI &#8594; Jenkins로 전환하여 배포 안정성 및 속도 개선</li>
+              <li class="highlight">불필요한 인프라 리소스(미사용 ECS Task, 과잉 프로비저닝 등)를 정리하여 <span class="metric">월 인프라 비용 약 55% 절감</span> (9,000만 원 &#8594; 4,000만 원대)</li>
+            </ul>
+            <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;전시&#183;CMS 백엔드 설계 및 개발 주담당, 인프라 개선은 DevOps 엔지니어와 협업</span></div>
+            <div class="tech-stack"><span class="tech-tag">NestJS 9.0</span><span class="tech-tag">Redis</span><span class="tech-tag">SQS</span><span class="tech-tag">ECS</span><span class="tech-tag">Jenkins</span></div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-title"><span>레이지나잇 서비스 오픈 런칭</span><a href="https://www.musinsa.com/cms/news/view/764" target="_blank" rel="noopener" class="blog-link">관련 기사 &nearr;</a></div>
+            <div class="project-subtitle">무신사 신사업 3545 여성 패션 커머스 "레이지나잇" 오픈 런칭</div>
+            <ul class="project-details">
+              <li class="highlight">팀 빌딩 시점부터 합류하여 <span class="metric">7개월 만에 서비스 오픈 런칭</span>을 달성, 런칭 초기 <span class="metric">MAU 약 40만</span> 규모의 서비스로 성장</li>
+              <li>백엔드 플랫폼 파트(Node.js) 소속으로, 전시 &#183; 공통 영역(브랜드, 카테고리, 은행, 국가, 택배사, 캘린더 등) &#183; 판매업체 정보 &#183; CS 도메인의 데이터베이스 설계 및 API 개발을 담당</li>
+              <li>도메인 간 메타데이터 동기화를 위한 SQS 기반 이벤트 파이프라인을 설계&#183;도입</li>
+              <li>클라이언트용 API에 Redis 캐싱 레이어를 도입하여 응답 속도 개선 및 DB 부하 분산</li>
+              <li>GitLab CI를 활용한 ECS 배포 파이프라인을 구축하여 자동화된 배포 환경을 마련</li>
+            </ul>
+            <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;전시&#183;공통&#183;CS 도메인 백엔드 전담 (런칭 준비 플랫폼 파트 4명 중 1인 &#8594; 런칭 후 8명 중 1인), 결제 파트(Java)와 gRPC 통신 인터페이스 협의</span></div>
+            <div class="tech-stack"><span class="tech-tag">NestJS 8.0</span><span class="tech-tag">gRPC</span><span class="tech-tag">Redis</span><span class="tech-tag">SQS</span><span class="tech-tag">ECS</span><span class="tech-tag">GitLab CI/CD</span></div>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- 마켓디자이너스 -->
     <div class="company-block fade-up">
-      <div class="company-header">
-        <div class="company-name"><a href="https://wematch.com/" target="_blank" rel="noopener">마켓디자이너스</a></div>
-        <span class="company-role">Backend Engineer → Lead</span>
-      </div>
-      <div class="company-meta">2020.09 ~ 2021.09 · 1년 1개월 · 위매치, 튜터링 등 온디맨드 매칭 플랫폼 스타트업</div>
-      <p class="company-desc">Backend Engineer로 입사하여 <strong>Backend 개발 팀 Lead</strong>까지 성장하며, 레거시 시스템 전환 프로젝트를 주도했습니다.</p>
+      <div class="company-card">
+        <div class="company-header">
+          <div class="company-name"><a href="https://wematch.com/" target="_blank" rel="noopener">마켓디자이너스</a></div>
+          <span class="company-role">Backend Engineer &#8594; Lead</span>
+        </div>
+        <div class="company-meta">2020.09 ~ 2021.09 &middot; 1년 1개월 &middot; 위매치, 튜터링 등 온디맨드 매칭 플랫폼 스타트업</div>
+        <p class="company-desc">Backend Engineer로 입사하여 <strong>Backend 개발 팀 Lead</strong>까지 성장하며, 레거시 시스템 전환 프로젝트를 주도했습니다.</p>
 
-      <div class="project-card">
-        <div class="project-title">이사 매칭 시스템 통합 전환</div>
-        <div class="project-subtitle">Classic ASP + Chalice(Python)로 MSA 분할 관리되던 이사 매칭 시스템을 Django 기반 Monolith로 통합·전환</div>
-        <ul class="project-details">
-          <li><span class="context-label">배경</span>레거시 기술 스택(Classic ASP)의 유지보수 한계와 MSA 간 데이터 정합성 이슈를 해소하기 위해 전환 결정</li>
-          <li>Raw SQL 쿼리를 Django ORM으로 전환하여 코드 가독성과 유지보수성을 대폭 향상</li>
-          <li>MS-SQL → MySQL 데이터베이스 마이그레이션을 수행하며 데이터 정합성 검증 절차를 수립</li>
-        </ul>
-        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;전환 프로젝트 기술 리드, 설계·개발·데이터 마이그레이션 전 과정 주도</span></div>
-        <div class="tech-stack"><span class="skill-tag">DRF</span><span class="skill-tag">Django 2.1</span><span class="skill-tag">Python 3.8</span><span class="skill-tag">MS-SQL</span><span class="skill-tag">MySQL</span><span class="skill-tag">EKS</span><span class="skill-tag">ArgoCD</span></div>
-      </div>
+        <button class="projects-toggle" onclick="toggleProjects(this)">
+          <span class="toggle-icon">&minus;</span>
+          <span class="toggle-text">프로젝트 접기</span>
+        </button>
 
-      <div class="project-card">
-        <div class="project-title">Message API 통합 전환</div>
-        <div class="project-subtitle">Classic ASP로 분산 구현되어 있던 메시지 시스템(MMS, 카카오 알림톡, 안심번호, App Push)을 NestJS 단일 프로젝트로 통합 구축</div>
-        <ul class="project-details">
-          <li>타사 OpenAPI 연동을 통한 안심번호 발급·관리 시스템과 카카오 알림톡 발송 체계, 발급 로그 체계를 구축</li>
-          <li>Firebase Cloud Messaging을 Google 권장 방식(FCM HTTP v1)으로 마이그레이션</li>
-        </ul>
-        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;설계 및 개발 전담</span></div>
-        <div class="tech-stack"><span class="skill-tag">NestJS</span><span class="skill-tag">TypeScript</span><span class="skill-tag">EKS</span><span class="skill-tag">ArgoCD</span><span class="skill-tag">MS-SQL</span><span class="skill-tag">MySQL</span></div>
-      </div>
+        <div class="projects-wrapper">
+          <div class="project-item">
+            <div class="project-title">이사 매칭 시스템 통합 전환</div>
+            <div class="project-subtitle">Classic ASP + Chalice(Python)로 MSA 분할 관리되던 이사 매칭 시스템을 Django 기반 Monolith로 통합&#183;전환</div>
+            <ul class="project-details">
+              <li><span class="context-label">배경</span>레거시 기술 스택(Classic ASP)의 유지보수 한계와 MSA 간 데이터 정합성 이슈를 해소하기 위해 전환 결정</li>
+              <li>Raw SQL 쿼리를 Django ORM으로 전환하여 코드 가독성과 유지보수성을 대폭 향상</li>
+              <li>MS-SQL &#8594; MySQL 데이터베이스 마이그레이션을 수행하며 데이터 정합성 검증 절차를 수립</li>
+            </ul>
+            <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;전환 프로젝트 기술 리드, 설계&#183;개발&#183;데이터 마이그레이션 전 과정 주도</span></div>
+            <div class="tech-stack"><span class="tech-tag">DRF</span><span class="tech-tag">Django 2.1</span><span class="tech-tag">Python 3.8</span><span class="tech-tag">MS-SQL</span><span class="tech-tag">MySQL</span><span class="tech-tag">EKS</span><span class="tech-tag">ArgoCD</span></div>
+          </div>
 
-      <div class="project-card">
-        <div class="project-title">JWT 인증 서버 구축</div>
-        <div class="project-subtitle">기존 1회성 번호 인증 방식을 JWT 토큰 기반 인증 시스템으로 전환</div>
-        <ul class="project-details">
-          <li>Kotlin + Spring Boot로 인증 서버를 신규 구축하여 인증번호 발급 횟수를 줄이고 SMS 발송 비용을 절감</li>
-          <li>각 서비스 API에 토큰 기반 인증 미들웨어를 적용하여 보안 수준 향상</li>
-          <li class="highlight"><strong>성과</strong> &nbsp;토큰 기반 인증 도입으로 인증 SMS 발송 건수 대폭 감소, 월 SMS 비용 절감</li>
-        </ul>
-        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;인증 서버 설계 및 구현 전담</span></div>
-        <div class="tech-stack"><span class="skill-tag">Kotlin</span><span class="skill-tag">Spring Boot</span><span class="skill-tag">Redis</span></div>
-      </div>
+          <div class="project-item">
+            <div class="project-title">Message API 통합 전환</div>
+            <div class="project-subtitle">Classic ASP로 분산 구현되어 있던 메시지 시스템(MMS, 카카오 알림톡, 안심번호, App Push)을 NestJS 단일 프로젝트로 통합 구축</div>
+            <ul class="project-details">
+              <li>타사 OpenAPI 연동을 통한 안심번호 발급&#183;관리 시스템과 카카오 알림톡 발송 체계, 발급 로그 체계를 구축</li>
+              <li>Firebase Cloud Messaging을 Google 권장 방식(FCM HTTP v1)으로 마이그레이션</li>
+            </ul>
+            <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;설계 및 개발 전담</span></div>
+            <div class="tech-stack"><span class="tech-tag">NestJS</span><span class="tech-tag">TypeScript</span><span class="tech-tag">EKS</span><span class="tech-tag">ArgoCD</span><span class="tech-tag">MS-SQL</span><span class="tech-tag">MySQL</span></div>
+          </div>
 
-      <div class="project-card">
-        <div class="project-title">배치 시스템 전환</div>
-        <div class="project-subtitle">Windows 서버의 Visual Basic 배치 85건을 클라우드 네이티브 환경으로 전면 전환</div>
-        <ul class="project-details">
-          <li>85개의 Visual Basic 배치 파일을 Python으로 컨버팅 후 AWS Lambda + EventBridge 기반으로 전환</li>
-          <li>실행 주기가 잦은 배치(매 N분 등)는 Django-Celery 기반 배치 서버를 별도 구축하고 관리자 페이지를 개발</li>
-          <li class="highlight"><strong>성과</strong> &nbsp;Windows 서버 운영 비용 제거, 배치 실행 모니터링 체계 확보</li>
-        </ul>
-        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;전환 설계 및 개발 주도 (85건 전수 전환)</span></div>
-        <div class="tech-stack"><span class="skill-tag">Django 2.1</span><span class="skill-tag">Python 3.8</span><span class="skill-tag">AWS Lambda</span><span class="skill-tag">EventBridge</span></div>
+          <div class="project-item">
+            <div class="project-title">JWT 인증 서버 구축</div>
+            <div class="project-subtitle">기존 1회성 번호 인증 방식을 JWT 토큰 기반 인증 시스템으로 전환</div>
+            <ul class="project-details">
+              <li>Kotlin + Spring Boot로 인증 서버를 신규 구축하여 인증번호 발급 횟수를 줄이고 SMS 발송 비용을 절감</li>
+              <li>각 서비스 API에 토큰 기반 인증 미들웨어를 적용하여 보안 수준 향상</li>
+              <li class="highlight"><strong>성과</strong> &nbsp;토큰 기반 인증 도입으로 인증 SMS 발송 건수 대폭 감소, 월 SMS 비용 절감</li>
+            </ul>
+            <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;인증 서버 설계 및 구현 전담</span></div>
+            <div class="tech-stack"><span class="tech-tag">Kotlin</span><span class="tech-tag">Spring Boot</span><span class="tech-tag">Redis</span></div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-title">배치 시스템 전환</div>
+            <div class="project-subtitle">Windows 서버의 Visual Basic 배치 85건을 클라우드 네이티브 환경으로 전면 전환</div>
+            <ul class="project-details">
+              <li>85개의 Visual Basic 배치 파일을 Python으로 컨버팅 후 AWS Lambda + EventBridge 기반으로 전환</li>
+              <li>실행 주기가 잦은 배치(매 N분 등)는 Django-Celery 기반 배치 서버를 별도 구축하고 관리자 페이지를 개발</li>
+              <li class="highlight"><strong>성과</strong> &nbsp;Windows 서버 운영 비용 제거, 배치 실행 모니터링 체계 확보</li>
+            </ul>
+            <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;전환 설계 및 개발 주도 (85건 전수 전환)</span></div>
+            <div class="tech-stack"><span class="tech-tag">Django 2.1</span><span class="tech-tag">Python 3.8</span><span class="tech-tag">AWS Lambda</span><span class="tech-tag">EventBridge</span></div>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- 비투텍 -->
     <div class="company-block fade-up">
-      <div class="company-header">
-        <div class="company-name"><a href="https://www.b2tech.co.kr/" target="_blank" rel="noopener">비투텍</a></div>
-        <span class="company-role">Backend &amp; App Developer</span>
-      </div>
-      <div class="company-meta">2020.03 ~ 2020.09 · 7개월 · 관제시스템 소프트웨어 개발 스타트업</div>
-      <p class="company-desc">솔루션개발팀에서 스마트 송장 시스템의 백엔드 및 모바일 앱 개발을 담당했습니다.</p>
+      <div class="company-card">
+        <div class="company-header">
+          <div class="company-name"><a href="https://www.b2tech.co.kr/" target="_blank" rel="noopener">비투텍</a></div>
+          <span class="company-role">Backend &amp; App Developer</span>
+        </div>
+        <div class="company-meta">2020.03 ~ 2020.09 &middot; 7개월 &middot; 관제시스템 소프트웨어 개발 스타트업</div>
+        <p class="company-desc">솔루션개발팀에서 스마트 송장 시스템의 백엔드 및 모바일 앱 개발을 담당했습니다.</p>
 
-      <div class="project-card">
-        <div class="project-title">스마트 송장 관리자 웹사이트 개발</div>
-        <div class="project-subtitle">토목공사 현장의 덤프 차량 운반 관리를 위한 위치기반 서비스(LBS) 백엔드 개발</div>
-        <ul class="project-details">
-          <li>기사 실시간 경로 추적, 현장 매칭, 운반 데이터 기반 대시보드 통계 산출 등 핵심 기능을 개발</li>
-          <li>기존 PHP 기반 관리자 페이지를 Django로 전면 전환하고, Flutter 앱용 REST API를 DRF로 구축</li>
-        </ul>
-        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;백엔드 전환 개발 및 API 설계 전담</span></div>
-        <div class="tech-stack"><span class="skill-tag">Django 2.1</span><span class="skill-tag">Python 3.8</span><span class="skill-tag">MySQL 8</span></div>
-      </div>
+        <button class="projects-toggle" onclick="toggleProjects(this)">
+          <span class="toggle-icon">&minus;</span>
+          <span class="toggle-text">프로젝트 접기</span>
+        </button>
 
-      <div class="project-card">
-        <div class="project-title">스마트 송장 기사용 앱 개발</div>
-        <div class="project-subtitle">기존 Android 전용 앱을 Flutter 기반 크로스 플랫폼으로 재개발</div>
-        <ul class="project-details">
-          <li>GPS 기반 자동 출발/도착 처리, 실시간 위치 좌표 서버 전송, Push 메시지 수신 기능을 구현</li>
-          <li>UI 설계부터 Flutter 개발까지 전담 · <a href="https://play.google.com/store/apps/details?id=smart_invoice.btocare.btocare" target="_blank" rel="noopener">Android</a> · <a href="https://apps.apple.com/us/app/%EC%8A%A4%EB%A7%88%ED%8A%B8%EC%86%A1%EC%9E%A5-b2groups/id1507969340?l=ko&ls=1" target="_blank" rel="noopener">iOS</a></li>
-        </ul>
-        <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;UI 설계 및 앱 개발 단독 수행</span></div>
-        <div class="tech-stack"><span class="skill-tag">Flutter 1.20</span><span class="skill-tag">Android</span><span class="skill-tag">iOS</span></div>
-      </div>
+        <div class="projects-wrapper">
+          <div class="project-item">
+            <div class="project-title">스마트 송장 관리자 웹사이트 개발</div>
+            <div class="project-subtitle">토목공사 현장의 덤프 차량 운반 관리를 위한 위치기반 서비스(LBS) 백엔드 개발</div>
+            <ul class="project-details">
+              <li>기사 실시간 경로 추적, 현장 매칭, 운반 데이터 기반 대시보드 통계 산출 등 핵심 기능을 개발</li>
+              <li>기존 PHP 기반 관리자 페이지를 Django로 전면 전환하고, Flutter 앱용 REST API를 DRF로 구축</li>
+            </ul>
+            <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;백엔드 전환 개발 및 API 설계 전담</span></div>
+            <div class="tech-stack"><span class="tech-tag">Django 2.1</span><span class="tech-tag">Python 3.8</span><span class="tech-tag">MySQL 8</span></div>
+          </div>
 
-      <div class="project-card">
-        <div class="project-title">2021학년도 온라인 대학입시박람회 플랫폼</div>
-        <div class="project-subtitle">코로나19 대응 언택트 대학입시 박람회 화상채팅 플랫폼 개발</div>
-        <ul class="project-details">
-          <li>데이터베이스 설계 및 백엔드 개발 담당 (대학 소개, 상담 스케줄 예약, 관리자 페이지, 카카오톡 알림)</li>
-        </ul>
-        <div class="tech-stack"><span class="skill-tag">Django 2.1</span><span class="skill-tag">Python 3.8</span><span class="skill-tag">PostgreSQL</span></div>
+          <div class="project-item">
+            <div class="project-title">스마트 송장 기사용 앱 개발</div>
+            <div class="project-subtitle">기존 Android 전용 앱을 Flutter 기반 크로스 플랫폼으로 재개발</div>
+            <ul class="project-details">
+              <li>GPS 기반 자동 출발/도착 처리, 실시간 위치 좌표 서버 전송, Push 메시지 수신 기능을 구현</li>
+              <li>UI 설계부터 Flutter 개발까지 전담</li>
+            </ul>
+            <div class="project-meta"><span class="project-meta-item"><strong>기여도</strong> &nbsp;UI 설계 및 앱 개발 단독 수행</span></div>
+            <div class="tech-stack"><span class="tech-tag">Flutter 1.20</span><span class="tech-tag">Android</span><span class="tech-tag">iOS</span></div>
+          </div>
+
+          <div class="project-item">
+            <div class="project-title">2021학년도 온라인 대학입시박람회 플랫폼</div>
+            <div class="project-subtitle">코로나19 대응 언택트 대학입시 박람회 화상채팅 플랫폼 개발</div>
+            <ul class="project-details">
+              <li>데이터베이스 설계 및 백엔드 개발 담당 (대학 소개, 상담 스케줄 예약, 관리자 페이지, 카카오톡 알림)</li>
+            </ul>
+            <div class="tech-stack"><span class="tech-tag">Django 2.1</span><span class="tech-tag">Python 3.8</span><span class="tech-tag">PostgreSQL</span></div>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- 코리아써키트 -->
     <div class="company-block fade-up">
-      <div class="company-header">
-        <div class="company-name"><a href="https://www.kcg.co.kr/" target="_blank" rel="noopener">코리아써키트</a></div>
-        <span class="company-role">IT Engineer</span>
-      </div>
-      <div class="company-meta">2016.09 ~ 2017.11 · 1년 3개월 · 영풍그룹 계열 PCB 제조 대기업</div>
-      <p class="company-desc">정보시스템팀에서 사내 ERP, MES, 그룹웨어 등 전사 시스템의 개발 및 유지보수를 담당했습니다.</p>
+      <div class="company-card">
+        <div class="company-header">
+          <div class="company-name"><a href="https://www.kcg.co.kr/" target="_blank" rel="noopener">코리아써키트</a></div>
+          <span class="company-role">IT Engineer</span>
+        </div>
+        <div class="company-meta">2016.09 ~ 2017.11 &middot; 1년 3개월 &middot; 영풍그룹 계열 PCB 제조 대기업</div>
+        <p class="company-desc">정보시스템팀에서 사내 ERP, MES, 그룹웨어 등 전사 시스템의 개발 및 유지보수를 담당했습니다.</p>
 
-      <div class="project-card">
-        <div class="project-title">사내 ERP – 그룹웨어 전자결재 연동</div>
-        <div class="project-subtitle">PowerBuilder 기반 ERP 시스템과 JSP 기반 그룹웨어 연동 시스템 개발</div>
-        <ul class="project-details">
-          <li>ERP에 입력된 데이터를 전자결재로 자동 전송하는 시스템을 구현</li>
-          <li class="highlight">종이 결재 → 전자결재 전환을 위한 회계팀 교육·가이드 작성 및 헬프데스크를 운영하여 <span class="metric">도입 1개월 만에 100% 전환 달성</span></li>
-        </ul>
-        <div class="tech-stack"><span class="skill-tag">PowerBuilder 7.0</span><span class="skill-tag">Visual Basic 6.0</span><span class="skill-tag">JSP</span><span class="skill-tag">MS-SQL Server</span></div>
+        <button class="projects-toggle" onclick="toggleProjects(this)">
+          <span class="toggle-icon">&minus;</span>
+          <span class="toggle-text">프로젝트 접기</span>
+        </button>
+
+        <div class="projects-wrapper">
+          <div class="project-item">
+            <div class="project-title">사내 ERP &#8211; 그룹웨어 전자결재 연동</div>
+            <div class="project-subtitle">PowerBuilder 기반 ERP 시스템과 JSP 기반 그룹웨어 연동 시스템 개발</div>
+            <ul class="project-details">
+              <li>ERP에 입력된 데이터를 전자결재로 자동 전송하는 시스템을 구현</li>
+              <li class="highlight">종이 결재 &#8594; 전자결재 전환을 위한 회계팀 교육&#183;가이드 작성 및 헬프데스크를 운영하여 <span class="metric">도입 1개월 만에 100% 전환 달성</span></li>
+            </ul>
+            <div class="tech-stack"><span class="tech-tag">PowerBuilder 7.0</span><span class="tech-tag">Visual Basic 6.0</span><span class="tech-tag">JSP</span><span class="tech-tag">MS-SQL Server</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- EDUCATION -->
+  <!-- EDUCATION & ACTIVITY -->
   <section class="section fade-up" id="education">
-    <div class="section-header"><h2>Education</h2><div></div></div>
-    <div class="edu-item">
-      <span class="edu-year">2017.03 ~ 2020.02</span>
-      <div><div class="edu-school">한양사이버대학교</div><div class="edu-major">컴퓨터공학 전공 (편입/졸업)</div></div>
-    </div>
-    <div class="edu-item">
-      <span class="edu-year">2014.03 ~ 2017.02</span>
-      <div><div class="edu-school">한양여자대학교</div><div class="edu-major">컴퓨터정보 전공 (졸업)</div></div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ACTIVITY -->
-  <section class="section fade-up">
-    <div class="section-header"><h2>Activity &amp; Projects</h2><div></div></div>
-    <div class="activity-list">
-      <div class="activity-item">
-        <span class="activity-date">2020.06 ~ 07</span>
-        <span class="activity-type">프로젝트</span>
-        <div class="activity-content"><strong>SQL To ORM</strong> — Raw SQL을 Django ORM으로 변환하는 도구 개발 · <a href="https://github.com/rimi-dev/sql_to_orm" target="_blank" rel="noopener">GitHub</a> · <a href="https://velog.io/@rimi/%EA%B0%9C%EB%B0%9C%EC%9D%BC%EC%A7%80-SQL-To-ORM-1" target="_blank" rel="noopener">Blog</a></div>
+    <div class="section-label">EDUCATION &amp; ACTIVITY</div>
+    <div class="edu-card">
+      <div class="edu-item">
+        <span class="edu-year">2017.03 ~ 2020.02</span>
+        <div><div class="edu-school">한양사이버대학교</div><div class="edu-major">컴퓨터공학 전공 (편입/졸업)</div></div>
       </div>
+      <div class="edu-item">
+        <span class="edu-year">2014.03 ~ 2017.02</span>
+        <div><div class="edu-school">한양여자대학교</div><div class="edu-major">컴퓨터정보 전공 (졸업)</div></div>
+      </div>
+
+      <div class="edu-sub-label">Activity</div>
+
       <div class="activity-item">
         <span class="activity-date">2017.05</span>
         <span class="activity-type">교육</span>
-        <div class="activity-content">삼성SDS 멀티캠퍼스 — 라즈베리파이를 활용한 .NET 기반 IoT 구현</div>
-      </div>
-      <div class="activity-item">
-        <span class="activity-date">2016.05 ~ 10</span>
-        <span class="activity-type">졸업작품</span>
-        <div class="activity-content"><strong>Arduino + Android IoT 시스템</strong> — 아두이노 기반 도어락 원격 제어 시스템 · <a href="https://velog.io/@rimi/%EC%A1%B8%EC%97%85%EC%9E%91%ED%92%88-Arduino%EC%99%80-Android-%EC%97%B0%EA%B2%B0%ED%95%98%EC%97%AC-IoT%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%A0%9C%EC%9E%91" target="_blank" rel="noopener">Blog</a></div>
+        <div class="activity-content">삼성SDS 멀티캠퍼스 &#8212; 라즈베리파이를 활용한 .NET 기반 IoT 구현</div>
       </div>
       <div class="activity-item">
         <span class="activity-date">2016.03</span>
         <span class="activity-type">교육</span>
-        <div class="activity-content">하이브리드앱 제작 — PHP, Node.js, 하이브리드 앱, API 파싱 실습</div>
+        <div class="activity-content">하이브리드앱 제작 &#8212; PHP, Node.js, 하이브리드 앱, API 파싱 실습</div>
       </div>
       <div class="activity-item">
         <span class="activity-date">2015.12 ~ 02</span>
         <span class="activity-type">인턴</span>
-        <div class="activity-content">탑매니아 — 웹 페이지 개발, 웹 서버 구축(IIS, Apache), 트래픽 모니터링</div>
+        <div class="activity-content">탑매니아 &#8212; 웹 페이지 개발, 웹 서버 구축(IIS, Apache), 트래픽 모니터링</div>
       </div>
       <div class="activity-item">
         <span class="activity-date">2015.02</span>
         <span class="activity-type">교육</span>
-        <div class="activity-content">한백전자 — 임베디드 프로그래밍, 아두이노 센서 실습</div>
+        <div class="activity-content">한백전자 &#8212; 임베디드 프로그래밍, 아두이노 센서 실습</div>
       </div>
     </div>
   </section>
@@ -786,7 +1042,7 @@
 
 <footer>
   <div class="container">
-    <p>&copy; 2025 김예림 (Rimi Kim). All rights reserved.</p>
+    <span class="footer-badge">&copy; 2025 김예림 (Yerim Kim). All rights reserved.</span>
   </div>
 </footer>
 
@@ -799,13 +1055,14 @@
 
   toggleBtn.addEventListener('click', () => {
     const current = html.getAttribute('data-theme');
-    const next = current === 'light' ? 'dark' : 'light';
-    if (next === 'dark') {
-      html.removeAttribute('data-theme');
+    const next = current === 'dark' ? null : 'dark';
+    if (next) {
+      html.setAttribute('data-theme', 'dark');
+      try { localStorage.setItem('theme', 'dark'); } catch(e) {}
     } else {
-      html.setAttribute('data-theme', next);
+      html.removeAttribute('data-theme');
+      try { localStorage.setItem('theme', 'light'); } catch(e) {}
     }
-    try { localStorage.setItem('theme', next); } catch(e) {}
   });
 
   // ── Career auto-calculation (LinkedIn-style: inclusive months) ──
@@ -837,17 +1094,20 @@
 
   document.getElementById('total-career').textContent = formatPeriod(total);
   document.getElementById('total-career-2').textContent = formatPeriod(total);
-  document.getElementById('career-year').textContent = Math.ceil(total / 12);
   document.getElementById('vibros-period').textContent = formatPeriod(vibros);
   document.getElementById('meta-desc').setAttribute('content', Math.ceil(total / 12) + '년차 백엔드 엔지니어 김예림의 경력기술서');
 
-  // Nav scroll
-  const nav = document.querySelector('nav');
+  // ── Nav scroll shadow ──
+  const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
-    nav.style.boxShadow = window.scrollY > 10 ? '0 1px 12px rgba(0,0,0,0.3)' : 'none';
+    if (window.scrollY > 10) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
   });
 
-  // Scroll fade-in
+  // ── Scroll fade-in ──
   if ('IntersectionObserver' in window) {
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
@@ -856,6 +1116,37 @@
   } else {
     document.querySelectorAll('.fade-up').forEach(el => el.classList.add('visible'));
   }
+
+  // ── Project toggle (expanded by default) ──
+  function toggleProjects(btn) {
+    const wrapper = btn.nextElementSibling;
+    const icon = btn.querySelector('.toggle-icon');
+    const text = btn.querySelector('.toggle-text');
+    if (wrapper.classList.contains('collapsed')) {
+      wrapper.classList.remove('collapsed');
+      wrapper.style.maxHeight = wrapper.scrollHeight + 'px';
+      // After transition, remove max-height constraint
+      wrapper.addEventListener('transitionend', function handler() {
+        wrapper.classList.add('expanded');
+        wrapper.removeEventListener('transitionend', handler);
+      });
+      icon.innerHTML = '\u2212';
+      text.textContent = '프로젝트 접기';
+    } else {
+      wrapper.classList.remove('expanded');
+      wrapper.style.maxHeight = wrapper.scrollHeight + 'px';
+      // Force reflow
+      wrapper.offsetHeight;
+      wrapper.classList.add('collapsed');
+      icon.innerHTML = '+';
+      text.textContent = '프로젝트 펼치기';
+    }
+  }
+
+  // Set initial state: expanded with no max-height constraint
+  document.querySelectorAll('.projects-wrapper').forEach(w => {
+    w.classList.add('expanded');
+  });
 </script>
 
 </body>
