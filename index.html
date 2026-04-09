@@ -28,6 +28,10 @@
       --skill-etc: #FED7AA;
       --badge-bg: #FFE566;
       --badge-text: #1a1a1a;
+      --chip-period: #E86827;
+      --chip-period-bg: #FFF1E6;
+      --chip-duration: #0D8A7C;
+      --chip-duration-bg: #E6FAF7;
       --card-shadow: 6px 6px 0px var(--shadow);
       --card-shadow-hover: 8px 8px 0px var(--shadow);
       --small-shadow: 4px 4px 0px var(--shadow);
@@ -56,6 +60,10 @@
       --skill-etc: #b08a5a;
       --badge-bg: #b8a320;
       --badge-text: #1a1a1a;
+      --chip-period: #FB923C;
+      --chip-period-bg: #3D2A1A;
+      --chip-duration: #2DD4BF;
+      --chip-duration-bg: #1A3330;
       --card-shadow: 4px 4px 0px #000;
       --card-shadow-hover: 6px 6px 0px #000;
       --small-shadow: 3px 3px 0px #000;
@@ -340,12 +348,19 @@
     }
 
     .company-header {
-      display: flex; align-items: flex-start; justify-content: space-between;
-      gap: 1rem; flex-wrap: wrap; margin-bottom: 0.35rem;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem;
     }
     .company-name {
       font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif;
-      font-size: 1.25rem; font-weight: 700; color: var(--text);
+      font-size: 1.35rem; font-weight: 700; color: var(--text);
+      line-height: 1.6;
+      display: flex; align-items: baseline; gap: 0.5rem;
+    }
+    .company-desc-label {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 0.78rem; font-weight: 400;
+      color: var(--text-dim);
     }
     .company-name a { color: inherit; text-decoration: none; transition: color 0.2s; }
     .company-name a:hover { color: var(--accent); }
@@ -360,9 +375,37 @@
       box-shadow: var(--tag-shadow);
     }
     .company-meta {
-      font-family: 'Fira Code', monospace;
-      font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.5rem;
+      display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.65rem;
     }
+    .meta-chip {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.7rem; line-height: 1;
+      color: var(--text-sub);
+      background: var(--bg);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 0.3rem 0.6rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .meta-chip:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: var(--tag-shadow);
+    }
+    .meta-chip svg {
+      width: 13px; height: 13px; flex-shrink: 0;
+      fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .meta-chip.chip-period {
+      border-color: var(--border);
+    }
+    .meta-chip.chip-period svg { stroke: var(--text-dim); }
+    .meta-chip.chip-duration {
+      background: var(--border); color: #fff;
+      border-color: var(--border); font-weight: 600;
+    }
+    .meta-chip.chip-duration svg { stroke: #fff; }
     .company-desc {
       font-size: 0.88rem; color: var(--text-sub); line-height: 1.7; margin-bottom: 1.5rem;
     }
@@ -521,7 +564,7 @@
     .edu-item {
       display: flex; gap: 1.25rem; align-items: flex-start; padding: 0.85rem 0;
     }
-    .edu-item + .edu-item { border-top: 2px dashed var(--divider); }
+    .edu-item + .edu-item { }
     .edu-year {
       font-family: 'Fira Code', monospace; font-size: 0.75rem;
       color: var(--text-dim); white-space: nowrap; padding-top: 0.1rem; min-width: 130px;
@@ -737,10 +780,13 @@
     <div class="company-block fade-up">
       <div class="company-card">
         <div class="company-header">
-          <div class="company-name"><a href="https://ddocdoc.com/" target="_blank" rel="noopener">비브로스</a></div>
+          <div class="company-name"><a href="https://ddocdoc.com/" target="_blank" rel="noopener">비브로스</a><span class="company-desc-label">헬스케어 서비스 "똑닥" 개발 스타트업</span></div>
           <span class="company-role">Backend Engineer</span>
         </div>
-        <div class="company-meta">2025.01 ~ 현재 &middot; <span id="vibros-period"></span> &middot; 헬스케어 서비스 "똑닥" 개발 스타트업</div>
+        <div class="company-meta">
+          <span class="meta-chip chip-period"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>2025.01 ~ 현재</span>
+          <span class="meta-chip chip-duration"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span id="vibros-period"></span></span>
+        </div>
         <p class="company-desc">백엔드팀 접수/예약 스쿼드 소속으로, MAU 150만 규모 서비스의 예약 시스템 핵심 기능 개편과 신규 서비스 개발을 담당하고 있습니다.</p>
 
         <button class="projects-toggle" onclick="toggleProjects(this)">
@@ -795,10 +841,13 @@
     <div class="company-block fade-up">
       <div class="company-card">
         <div class="company-header">
-          <div class="company-name"><a href="https://www.musinsa.com/" target="_blank" rel="noopener">무신사</a></div>
+          <div class="company-name"><a href="https://www.musinsa.com/" target="_blank" rel="noopener">무신사</a><span class="company-desc-label">온라인 패션 커머스 유니콘 기업</span></div>
           <span class="company-role">Backend Engineer</span>
         </div>
-        <div class="company-meta">2021.09 ~ 2024.03 &middot; 2년 7개월 &middot; 온라인 패션 커머스 유니콘 기업</div>
+        <div class="company-meta">
+          <span class="meta-chip chip-period"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>2021.09 ~ 2024.03</span>
+          <span class="meta-chip chip-duration"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>2년 7개월</span>
+        </div>
         <p class="company-desc">신사업 개발부서 소속으로 신규 서비스 런칭부터 성장 단계까지의 백엔드 개발을 담당했습니다.</p>
 
         <button class="projects-toggle" onclick="toggleProjects(this)">
@@ -859,10 +908,13 @@
     <div class="company-block fade-up">
       <div class="company-card">
         <div class="company-header">
-          <div class="company-name"><a href="https://wematch.com/" target="_blank" rel="noopener">마켓디자이너스</a></div>
+          <div class="company-name"><a href="https://www.da24.co.kr/" target="_blank" rel="noopener">마켓디자이너스</a><span class="company-desc-label">다이사, 튜터링 온디맨드 매칭 플랫폼 스타트업</span></div>
           <span class="company-role">Backend Engineer &#8594; Lead</span>
         </div>
-        <div class="company-meta">2020.09 ~ 2021.09 &middot; 1년 1개월 &middot; 위매치, 튜터링 등 온디맨드 매칭 플랫폼 스타트업</div>
+        <div class="company-meta">
+          <span class="meta-chip chip-period"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>2020.09 ~ 2021.09</span>
+          <span class="meta-chip chip-duration"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1년 1개월</span>
+        </div>
         <p class="company-desc">Backend Engineer로 입사하여 <strong>Backend 개발 팀 Lead</strong>까지 성장하며, 레거시 시스템 전환 프로젝트를 주도했습니다.</p>
 
         <button class="projects-toggle" onclick="toggleProjects(this)">
@@ -925,10 +977,13 @@
     <div class="company-block fade-up">
       <div class="company-card">
         <div class="company-header">
-          <div class="company-name"><a href="https://www.b2tech.co.kr/" target="_blank" rel="noopener">비투텍</a></div>
+          <div class="company-name"><a href="https://www.b2tech.co.kr/" target="_blank" rel="noopener">비투텍</a><span class="company-desc-label">관제시스템 소프트웨어 개발 스타트업</span></div>
           <span class="company-role">Backend &amp; App Developer</span>
         </div>
-        <div class="company-meta">2020.03 ~ 2020.09 &middot; 7개월 &middot; 관제시스템 소프트웨어 개발 스타트업</div>
+        <div class="company-meta">
+          <span class="meta-chip chip-period"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>2020.03 ~ 2020.09</span>
+          <span class="meta-chip chip-duration"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>7개월</span>
+        </div>
         <p class="company-desc">솔루션개발팀에서 스마트 송장 시스템의 백엔드 및 모바일 앱 개발을 담당했습니다.</p>
 
         <button class="projects-toggle" onclick="toggleProjects(this)">
@@ -975,10 +1030,13 @@
     <div class="company-block fade-up">
       <div class="company-card">
         <div class="company-header">
-          <div class="company-name"><a href="https://www.kcg.co.kr/" target="_blank" rel="noopener">코리아써키트</a></div>
+          <div class="company-name"><a href="https://www.kcg.co.kr/" target="_blank" rel="noopener">코리아써키트</a><span class="company-desc-label">영풍그룹 계열 PCB 제조 대기업</span></div>
           <span class="company-role">IT Engineer</span>
         </div>
-        <div class="company-meta">2016.09 ~ 2017.11 &middot; 1년 3개월 &middot; 영풍그룹 계열 PCB 제조 대기업</div>
+        <div class="company-meta">
+          <span class="meta-chip chip-period"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>2016.09 ~ 2017.11</span>
+          <span class="meta-chip chip-duration"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1년 3개월</span>
+        </div>
         <p class="company-desc">정보시스템팀에서 사내 ERP, MES, 그룹웨어 등 전사 시스템의 개발 및 유지보수를 담당했습니다.</p>
 
         <button class="projects-toggle" onclick="toggleProjects(this)">
