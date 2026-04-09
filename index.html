@@ -18,7 +18,7 @@
       --text-dim: #999;
       --border: #1a1a1a;
       --shadow: #1a1a1a;
-      --accent: #6366f1;
+      --accent: #1D6FA5;
       --nav-bg: rgba(255,253,240,0.92);
       --skill-lang: #FFE566;
       --skill-framework: #A5F3FC;
@@ -36,6 +36,8 @@
       --card-shadow-hover: 8px 8px 0px var(--shadow);
       --small-shadow: 4px 4px 0px var(--shadow);
       --tag-shadow: 2px 2px 0px var(--shadow);
+      --tech-color: #1D6FA5;
+      --tech-bg: #E8F2FA;
       --radius-lg: 16px;
       --radius-sm: 12px;
       --border-w: 3px;
@@ -50,15 +52,15 @@
       --text-dim: #777;
       --border: #444;
       --shadow: #000;
-      --accent: #818cf8;
+      --accent: #6CB4E0;
       --nav-bg: rgba(26,26,26,0.92);
-      --skill-lang: #b8a320;
+      --skill-lang: #C9B82E;
       --skill-framework: #4d8a96;
       --skill-db: #7a6db0;
       --skill-message: #5a9a6a;
-      --skill-infra: #a06a88;
-      --skill-etc: #b08a5a;
-      --badge-bg: #b8a320;
+      --skill-infra: #B0758F;
+      --skill-etc: #C09565;
+      --badge-bg: #C9B82E;
       --badge-text: #1a1a1a;
       --chip-period: #FB923C;
       --chip-period-bg: #3D2A1A;
@@ -68,6 +70,8 @@
       --card-shadow-hover: 6px 6px 0px #000;
       --small-shadow: 3px 3px 0px #000;
       --tag-shadow: 2px 2px 0px #000;
+      --tech-color: #6CB4E0;
+      --tech-bg: #1A2E40;
       --divider: #444;
     }
 
@@ -168,19 +172,7 @@
       box-shadow: var(--tag-shadow);
       margin-bottom: 1.25rem;
     }
-    .section-label-row {
-      display: flex; align-items: center; gap: 0.65rem;
-      margin-bottom: 1.25rem;
-    }
-    .career-total-badge {
-      font-family: 'Fira Code', monospace;
-      font-size: 0.72rem; font-weight: 600;
-      background: var(--bg-card); color: var(--accent);
-      border: 2px solid var(--border);
-      padding: 0.2rem 0.6rem;
-      border-radius: 8px;
-      box-shadow: var(--tag-shadow);
-    }
+
 
     /* ── HERO ── */
     .hero { padding: 6rem 0 2rem; }
@@ -498,7 +490,7 @@
       content: '\25B8'; position: absolute; left: 0; top: 0; color: var(--text-dim);
       font-size: 0.7rem;
     }
-    .project-details li.highlight::before { color: var(--accent); }
+    .project-details li.highlight::before { color: var(--text-dim); }
     .project-details li strong { font-weight: 600; color: var(--text); }
 
     .context-label {
@@ -541,11 +533,11 @@
     .tech-stack { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.65rem; }
     .tech-stack .tech-tag {
       font-family: 'Fira Code', monospace;
-      font-size: 0.68rem; font-weight: 500;
-      color: var(--text-sub);
-      background: var(--bg);
-      border: 2px solid var(--border);
-      padding: 0.15rem 0.45rem; border-radius: 5px;
+      font-size: 0.65rem; font-weight: 600;
+      color: var(--tech-color);
+      background: var(--tech-bg);
+      border: none;
+      padding: 0.2rem 0.5rem; border-radius: 4px;
     }
 
     /* ── EDUCATION ── */
@@ -767,10 +759,7 @@
 
   <!-- CAREER -->
   <section class="section" id="career">
-    <div class="section-label-row">
-      <div class="section-label">CAREER</div>
-      <span class="career-total-badge"><span id="total-career-2"></span></span>
-    </div>
+    <div class="section-label">CAREER</div>
 
     <!-- 비브로스 -->
     <div class="company-block fade-up">
@@ -1147,7 +1136,7 @@
   });
 
   document.getElementById('total-career').textContent = formatPeriod(total);
-  document.getElementById('total-career-2').textContent = formatPeriod(total);
+
   document.getElementById('vibros-period').textContent = formatPeriod(vibros);
   document.getElementById('meta-desc').setAttribute('content', Math.ceil(total / 12) + '년차 백엔드 엔지니어 김예림의 경력기술서');
 
